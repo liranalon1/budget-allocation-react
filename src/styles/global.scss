@@ -1,3 +1,8 @@
+body {
+    font-family: 'Avenir', sans-serif;
+    color: #182033;
+}
+
 .container {
     // max-width: 1920px;
     // width: 100%;
@@ -20,8 +25,9 @@ button {
 
 .btn {
     width: fit-content;
-    display: grid;
-    place-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 5px;
     padding: 10px 20px;
     font-weight: 600;

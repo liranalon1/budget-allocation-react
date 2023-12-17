@@ -10,17 +10,19 @@ const Tabs = ({ tabs }) => {
 
     return (
         <div className="tabs">
-            <ul className="tab-list">
-                {tabs.map((tab, index) => (
-                    <li
-                        key={index}
-                        className={index === activeTab ? 'active' : ''}
-                        onClick={() => handleTabClick(index)}
-                    >
-                        {tab.label}
-                    </li>
-                ))}
-            </ul>
+            <nav>
+                <ul className="tab-list flex">
+                    {tabs.map((tab, index) => (
+                        <li
+                            key={index}
+                            className={index === activeTab ? 'active' : ''}
+                            onClick={() => handleTabClick(index)}
+                        >
+                            {tab.label}
+                        </li>
+                    ))}
+                </ul>
+            </nav>
             <div className="tab-content">{tabs[activeTab].content}</div>
         </div>
     );

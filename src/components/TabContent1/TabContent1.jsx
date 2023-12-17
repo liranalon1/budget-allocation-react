@@ -1,34 +1,33 @@
 import { useState } from 'react';
-
-import ChannelRow from '../ChannelRow/ChannelRow';
+import './TabContent1.scss';
+import ChannelRow from '../Channel/ChannelRow/ChannelRow';
+import ChannelContent from '../Channel/ChannelContent/ChannelContent';
 
 const TabContent1 = ({ channelData }) => {
-    const [isExpanded, setIsExpanded] = useState(false || channelData.id === 1);
+    const [isExpanded, setIsExpanded] = useState(false);
+    const [expandedRowId, setExpandedRowId] = useState(null);
 
     return (
-        <div className="tabContent1">
-            <div>
-                {channelData.map((row) => (
-                    <>
-                        <ChannelRow
-                            key={row.id}
-                            data={row}
-                            isExpanded={isExpanded}
-                            setIsExpanded={setIsExpanded}
-                        />
+        <div className="tab-content1 flex">
+            {channelData.map((row) => (
+                <div className="channel-wrap" key={row.id}>
+                    <ChannelRow
+                        data={row}
+                        isExpanded={isExpanded}
+                        setIsExpanded={setIsExpanded}
+                        expandedRowId={expandedRowId}
+                        setExpandedRowId={setExpandedRowId}
+                    />
 
-                        {isExpanded && (
-                            <div
-                                className={`channel-content ${
-                                    isExpanded ? 'isExpanded' : ''
-                                }`}
-                            >
-                                working !!!!!!!!!!!!!!!!!!!!
-                            </div>
-                        )}
-                    </>
-                ))}
-            </div>
+                    <ChannelContent
+                        isExpanded={isExpanded}
+                        id={row.id}
+                        expandedRowId={expandedRowId}
+                    >
+                        working !!!!!!!!!!!!!!!!!!!!
+                    </ChannelContent>
+                </div>
+            ))}
         </div>
     );
 };

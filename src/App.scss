@@ -1,0 +1,49 @@
+.app {
+    .top-content {
+        justify-content: space-between;
+
+        h1 {
+            font-size: 1.5rem;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            letter-spacing: -0.0125rem;
+        }
+
+        h2 {
+            font-size: 1.125rem;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            margin: 1rem 0 0.5rem;
+        }
+
+        p {
+            width: 42.375rem;
+            color: #99a4c2;
+            font-size: 0.875rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 1.3125rem;
+        }
+
+        .add-channel {
+            margin-top: auto;
+            height: 2.5rem;
+            background: linear-gradient(0deg, #fafafc 0%, #fff 100%);
+            border: 1px solid rgba(178, 187, 213, 0.5);
+            box-shadow: 0px 1px 2px #e6e8f0;
+            gap: 0.5rem;
+
+            color: #707ea7;
+            font-size: 0.75rem;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 1rem;
+        }
+    }
+
+    .tabs {
+        margin-top: 3.31rem;
+    }
+}

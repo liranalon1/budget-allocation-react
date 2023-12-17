@@ -1,2 +1,8 @@
-.tabContent1 {
+.tab-content1 {
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.channel-wrap {
+    flex-direction: column;
 }

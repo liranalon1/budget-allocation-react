@@ -1,0 +1,15 @@
+.channel-row {
+    align-items: center;
+    width: 100%;
+    height: 3.25rem;
+    border-radius: 0.25rem 0.25rem 0rem 0rem;
+    border: 1px solid rgba(178, 187, 213, 0.5);
+    background: #f6f7fb;
+    padding: 0 0.93rem;
+
+    &.is-expanded {
+        svg {
+            transform: rotate(-180deg);
+        }
+    }
+}
