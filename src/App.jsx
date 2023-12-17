@@ -67,7 +67,7 @@ function App() {
                     </button>
                 </div>
 
-                <context.Provider value={{channelData, setChannelData}}>
+                <context.Provider value={{ channelData, setChannelData }}>
                     <Tabs tabs={tabData} />
                 </context.Provider>
             </div>

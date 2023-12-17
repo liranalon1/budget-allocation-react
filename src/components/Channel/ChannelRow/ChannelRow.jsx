@@ -1,6 +1,8 @@
 import './ChannelRow.scss';
 import Arrow from '../../Arrow/Arrow';
 import EditChannel from './EditChannel/EditChannel';
+import { useContext, useState } from 'react';
+import { context } from '../../../App';
 
 const ChannelRow = ({
     data,
@@ -9,9 +11,35 @@ const ChannelRow = ({
     expandedRowId,
     setExpandedRowId,
 }) => {
+    const { channelData, setChannelData } = useContext(context);
+    const [value, setValue] = useState(data.name);
+    const [isEditMode, setIsEditMode] = useState(false);
+
     const handleToggle = (id) => {
         setIsExpanded(!isExpanded);
         setExpandedRowId(id);
+    };
+
+    const handleChannelName = (value) => {
+        setValue(value);
+    };
+
+    const handleInputBlur = (value) => {
+        handleChannelName(value);
+
+        const updatedData = channelData.map((i) => {
+            if (i.id === data.id) {
+                const obj = {
+                    id: data.id,
+                    name: value,
+                };
+                return { ...i, ...obj };
+            }
+            return i;
+        });
+        setChannelData(updatedData);
+
+        setIsEditMode(false);
     };
 
     return (
@@ -22,11 +50,20 @@ const ChannelRow = ({
             onClick={() => handleToggle(data.id)}
         >
             <Arrow />
-            {data.name}
 
-            
+            {isEditMode ? (
+                <input
+                    type="text"
+                    value={value}
+                    onChange={(e) => handleChannelName(e.target.value)}
+                    onBlur={(e) => handleInputBlur(e.target.value)}
+                    autoFocus
+                />
+            ) : (
+                data.name
+            )}
 
-            <EditChannel data={data}/>
+            <EditChannel data={data} setIsEditMode={setIsEditMode} />
         </div>
     );
 };

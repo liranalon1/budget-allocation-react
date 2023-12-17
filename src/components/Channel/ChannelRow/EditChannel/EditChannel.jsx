@@ -1,12 +1,9 @@
 import './EditChannel.scss';
 import { useContext, useState } from 'react';
-import {context} from '../../../../App'
+import { context } from '../../../../App';
 
-const EditChannel = ({data}) => {
-    // console.log(data)
+const EditChannel = ({ data, setIsEditMode }) => {
     const { channelData, setChannelData } = useContext(context);
-
-    console.log('mycontext: ', channelData);
 
     const [isExpanded, setIsExpanded] = useState(false);
 
@@ -15,13 +12,12 @@ const EditChannel = ({data}) => {
     };
 
     const editChannel = () => {
-        console.log('edit channel')
-        setIsExpanded(false); 
+        setIsEditMode(true);
+        setIsExpanded(false);
     };
 
     const removeChannel = () => {
-        console.log('remove channel')
-        setChannelData((current) => current.splice(1, data.id))
+        setChannelData((current) => current.splice(1, data.id));
         setIsExpanded(false);
     };
 
@@ -45,10 +41,13 @@ const EditChannel = ({data}) => {
             {isExpanded && (
                 <div className="box">
                     <ul>
-                        <li className='editChannel flex' onClick={editChannel}>
+                        <li className="editChannel flex" onClick={editChannel}>
                             <a>Edit</a>
                         </li>
-                        <li className='removeChannel flex' onClick={removeChannel}>
+                        <li
+                            className="removeChannel flex"
+                            onClick={removeChannel}
+                        >
                             <a>Remove</a>
                         </li>
                     </ul>
