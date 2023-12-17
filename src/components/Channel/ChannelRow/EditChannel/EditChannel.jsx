@@ -17,7 +17,10 @@ const EditChannel = ({ data, setIsEditMode }) => {
     };
 
     const removeChannel = () => {
-        setChannelData((current) => current.splice(1, data.id));
+        const updatedChannelData = [...channelData];
+        updatedChannelData.splice(data.id - 1, 1);
+
+        setChannelData(updatedChannelData);
         setIsExpanded(false);
     };
 
