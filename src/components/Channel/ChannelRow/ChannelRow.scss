@@ -12,4 +12,14 @@
             transform: rotate(180deg);
         }
     }
+
+    .channel-name {
+        padding: 0 0.75rem;
+    }
+
+    input {
+        border: inherit;
+        background: #fff;
+        padding: 0 0.75rem;
+    }
 }

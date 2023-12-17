@@ -31,7 +31,7 @@ const ChannelRow = ({
             if (i.id === data.id) {
                 const obj = {
                     id: data.id,
-                    name: value,
+                    name: value === '' ? 'New Channel' : value,
                 };
                 return { ...i, ...obj };
             }
@@ -55,12 +55,13 @@ const ChannelRow = ({
                 <input
                     type="text"
                     value={value}
+                    onClick={(e) => e.stopPropagation()}
                     onChange={(e) => handleChannelName(e.target.value)}
                     onBlur={(e) => handleInputBlur(e.target.value)}
                     autoFocus
                 />
             ) : (
-                data.name
+                <div className="channel-name">{data.name}</div>
             )}
 
             <EditChannel data={data} setIsEditMode={setIsEditMode} />
