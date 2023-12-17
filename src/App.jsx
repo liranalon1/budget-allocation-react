@@ -1,8 +1,10 @@
 import './App.scss';
-import { useState } from 'react';
+import { createContext, useState } from 'react';
 import Tabs from './components/Tabs/Tabs';
 import TabContent1 from './components/TabContent1/TabContent1';
 import TabContent2 from './components/TabContent2/TabContent2';
+
+export const context = createContext();
 
 function App() {
     const [channelData, setChannelData] = useState([
@@ -27,7 +29,7 @@ function App() {
         setChannelData((current) => [
             ...current,
             {
-                id: current + 1,
+                id: current.at(-1)?.id + 1 || 1,
                 name: 'New Channel',
             },
         ]);
@@ -64,7 +66,10 @@ function App() {
                         Add Channel
                     </button>
                 </div>
-                <Tabs tabs={tabData} />
+
+                <context.Provider value={{channelData, setChannelData}}>
+                    <Tabs tabs={tabData} />
+                </context.Provider>
             </div>
         </div>
     );

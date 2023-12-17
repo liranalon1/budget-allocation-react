@@ -12,7 +12,7 @@ const Tabs = ({ tabs }) => {
         <div className="tabs">
             <nav>
                 <ul className="tab-list flex">
-                    {tabs.map((tab, index) => (
+                    {tabs?.map((tab, index) => (
                         <li
                             key={index}
                             className={index === activeTab ? 'active' : ''}
@@ -23,7 +23,7 @@ const Tabs = ({ tabs }) => {
                     ))}
                 </ul>
             </nav>
-            <div className="tab-content">{tabs[activeTab].content}</div>
+            <div className="tab-content">{tabs[activeTab]?.content}</div>
         </div>
     );
 };

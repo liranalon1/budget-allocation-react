@@ -24,6 +24,8 @@ const ChannelRow = ({
             <Arrow />
             {data.name}
 
+            
+
             <EditChannel data={data}/>
         </div>
     );

@@ -1,8 +1,13 @@
 import './EditChannel.scss';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import {context} from '../../../../App'
 
 const EditChannel = ({data}) => {
-    console.log(data)
+    // console.log(data)
+    const { channelData, setChannelData } = useContext(context);
+
+    console.log('mycontext: ', channelData);
+
     const [isExpanded, setIsExpanded] = useState(false);
 
     const handleToggle = () => {
@@ -16,6 +21,7 @@ const EditChannel = ({data}) => {
 
     const removeChannel = () => {
         console.log('remove channel')
+        setChannelData((current) => current.splice(1, data.id))
         setIsExpanded(false);
     };
 

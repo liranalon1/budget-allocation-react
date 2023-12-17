@@ -40,6 +40,10 @@
             font-style: normal;
             font-weight: 600;
             line-height: 1rem;
+
+            &:hover {
+                background: #f6f7fb;
+            }
         }
     }
 
