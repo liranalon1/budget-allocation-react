@@ -1,16 +1,26 @@
 import './EditChannel.scss';
 import { useState } from 'react';
 
-const EditChannel = () => {
+const EditChannel = ({data}) => {
+    console.log(data)
     const [isExpanded, setIsExpanded] = useState(false);
 
-    const handleToggle = (e) => {
+    const handleToggle = () => {
         setIsExpanded(!isExpanded);
-        e.stopPropagation();
+    };
+
+    const editChannel = () => {
+        console.log('edit channel')
+        setIsExpanded(false); 
+    };
+
+    const removeChannel = () => {
+        console.log('remove channel')
+        setIsExpanded(false);
     };
 
     return (
-        <div className="edit-channel">
+        <div className="edit-channel" onClick={(e) => e.stopPropagation()}>
             <button className="dots" onClick={handleToggle}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -29,10 +39,10 @@ const EditChannel = () => {
             {isExpanded && (
                 <div className="box">
                     <ul>
-                        <li>
+                        <li className='editChannel flex' onClick={editChannel}>
                             <a>Edit</a>
                         </li>
-                        <li>
+                        <li className='removeChannel flex' onClick={removeChannel}>
                             <a>Remove</a>
                         </li>
                     </ul>
