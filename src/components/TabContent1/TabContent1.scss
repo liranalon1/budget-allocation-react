@@ -6,3 +6,40 @@
 .channel-wrap {
     flex-direction: column;
 }
+
+// budget-wrap
+.budget-wrap {
+    padding: 2rem;
+    .budget-top-items {
+        gap: 3.5rem;
+        .budget-item {
+            .top-item {
+                gap: 0.5rem;
+                align-items: center;
+                label {
+                    margin-bottom: 0.5rem;
+                }
+                svg {
+                }
+            }
+            .select {
+                position: relative;
+                width: 14.125rem;
+                padding: 0;
+                select {
+                    align-items: center;
+                    width: 100%;
+                    height: 100%;
+                    padding: 0 1rem;
+                }
+                .arrow {
+                    top: 50%;
+                    right: 0;
+                    position: absolute;
+                    transform: translate(-1rem, -50%);
+                    pointer-events: none;
+                }
+            }
+        }
+    }
+}

@@ -49,7 +49,10 @@ function App() {
                             with the help of tips and insights.
                         </p>
                     </div>
-                    <button className="btn add-channel" onClick={addChannel}>
+                    <button
+                        className="btn light add-channel"
+                        onClick={addChannel}
+                    >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="10"

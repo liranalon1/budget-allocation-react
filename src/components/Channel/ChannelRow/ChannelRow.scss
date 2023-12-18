@@ -7,8 +7,13 @@
     background: #f6f7fb;
     padding: 0 0.93rem;
 
+    .channel-icon {
+        display: flex;
+        margin-left: 1.88rem;
+    }
+
     &.is-expanded {
-        svg {
+        .arrow {
             transform: rotate(180deg);
         }
     }
@@ -19,7 +24,7 @@
 
     input {
         border: inherit;
-        background: #fff;
+        background: rgba(255, 255, 255, 0.5);
         padding: 0 0.75rem;
     }
 }

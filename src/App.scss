@@ -29,21 +29,8 @@
 
         .add-channel {
             margin-top: auto;
-            height: 2.5rem;
-            background: linear-gradient(0deg, #fafafc 0%, #fff 100%);
-            border: 1px solid rgba(178, 187, 213, 0.5);
-            box-shadow: 0px 1px 2px #e6e8f0;
             gap: 0.5rem;
-
             color: #707ea7;
-            font-size: 0.75rem;
-            font-style: normal;
-            font-weight: 600;
-            line-height: 1rem;
-
-            &:hover {
-                background: #f6f7fb;
-            }
         }
     }
 
