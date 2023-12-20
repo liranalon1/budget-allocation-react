@@ -12,7 +12,8 @@
     padding: 2rem;
     .budget-top-items {
         gap: 3.5rem;
-        .budget-item {
+
+        .input-group {
             .top-item {
                 gap: 0.5rem;
                 align-items: center;
@@ -33,6 +34,8 @@
                     padding: 0 1rem;
                 }
                 .arrow {
+                    width: 0.5rem;
+                    height: 0.3125rem;
                     top: 50%;
                     right: 0;
                     position: absolute;
