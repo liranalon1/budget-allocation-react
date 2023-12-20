@@ -1,7 +1,7 @@
 import './Tabs.scss';
-import { useState } from 'react';
+import { useState, cloneElement } from 'react';
 
-const Tabs = ({ tabs }) => {
+const Tabs = ({ children }) => {
     const [activeTab, setActiveTab] = useState(0);
 
     const handleTabClick = (index) => {
@@ -10,7 +10,15 @@ const Tabs = ({ tabs }) => {
 
     return (
         <div className="tabs">
-            <nav>
+            {children.map((child, i) => {
+                return cloneElement(child, {
+                    activeTab,
+                    handleTabClick,
+                    key: i,
+                });
+            })}
+
+            {/* <nav>
                 <ul className="tab-list flex">
                     {tabs?.map((tab, index) => (
                         <li
@@ -23,7 +31,7 @@ const Tabs = ({ tabs }) => {
                     ))}
                 </ul>
             </nav>
-            <div className="tab-content">{tabs[activeTab]?.content}</div>
+            <div className="tab-content">{tabs[activeTab]?.content}</div> */}
         </div>
     );
 };

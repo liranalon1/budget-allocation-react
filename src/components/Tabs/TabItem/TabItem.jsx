@@ -1,14 +1,15 @@
-const TabItem = ({ children, active, onClick }) => (
-    <div
-        style={{
-            padding: '10px',
-            cursor: 'pointer',
-            borderBottom: active ? '2px solid blue' : '2px solid transparent',
-        }}
-        onClick={onClick}
-    >
-        {children}
-    </div>
-);
+const TabItem = ({ children, tabIndex, activeTab, handleTabClick }) => {
+    return (
+        <>
+            <li
+                key={tabIndex}
+                className={tabIndex === activeTab ? 'active' : ''}
+                onClick={() => handleTabClick(tabIndex)}
+            >
+                {children}
+            </li>
+        </>
+    );
+};
 
 export default TabItem;

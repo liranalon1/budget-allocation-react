@@ -1,10 +1,16 @@
 import './App.scss';
 import { createContext, useState } from 'react';
-import Tabs from './components/Tabs/Tabs';
-import TabContent1 from './components/TabContent1/TabContent1';
-import TabContent2 from './components/TabContent2/TabContent2';
 
-export const context = createContext();
+import Tabs from '@/components/Tabs/Tabs';
+import TabsNav from '@/components/Tabs/TabsNav/TabsNav';
+import TabItem from '@/components/Tabs/TabItem/TabItem';
+import TabContent from '@/components/Tabs/TabContent/TabContent';
+import TabContentItem from '@/components/Tabs/TabContent/TabContentItem/TabContentItem';
+
+import TabContent1 from '@/components/TabContent1/TabContent1';
+import TabContent2 from '@/components/TabContent2/TabContent2';
+
+export const channelContext = createContext();
 
 function App() {
     const [channelData, setChannelData] = useState([
@@ -13,17 +19,6 @@ function App() {
             name: 'Paid reviews',
         },
     ]);
-
-    const tabData = [
-        {
-            label: 'Tab 1',
-            content: <TabContent1 channelData={channelData} />,
-        },
-        {
-            label: 'Tab 2',
-            content: <TabContent2 channelData={channelData} />,
-        },
-    ];
 
     const addChannel = () => {
         setChannelData((current) => [
@@ -70,9 +65,28 @@ function App() {
                     </button>
                 </div>
 
-                <context.Provider value={{ channelData, setChannelData }}>
-                    <Tabs tabs={tabData} />
-                </context.Provider>
+                <channelContext.Provider
+                    value={{ channelData, setChannelData }}
+                >
+                    <Tabs>
+                        <TabsNav>
+                            <TabItem>Tab 1</TabItem>
+                            <TabItem>Tab 2</TabItem>
+                        </TabsNav>
+
+                        <TabContent>
+                            <TabContentItem>
+                                <TabContent1
+                                    channelData={channelData}
+                                    setChannelData={setChannelData}
+                                />
+                            </TabContentItem>
+                            <TabContentItem>
+                                <TabContent2 />
+                            </TabContentItem>
+                        </TabContent>
+                    </Tabs>
+                </channelContext.Provider>
             </div>
         </div>
     );

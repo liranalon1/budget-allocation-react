@@ -1,9 +1,9 @@
 import './EditChannel.scss';
 import { useContext, useState } from 'react';
-import { context } from '../../../../App';
+import { channelContext } from '../../../../App';
 
 const EditChannel = ({ data, setIsEditMode }) => {
-    const { channelData, setChannelData } = useContext(context);
+    const { channelData, setChannelData } = useContext(channelContext);
 
     const [isExpanded, setIsExpanded] = useState(false);
 
