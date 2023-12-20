@@ -1,36 +1,36 @@
-import Arrow from '../ArrowIcon/ArrowIcon';
+import './InputGroup.scss';
 import InfoIcon from '../InfoIcon/InfoIcon';
-import './DropdownSelect.scss';
 
-const DropdownSelect = ({
+const InputGroup = ({
     children,
-    defaultValue,
+    value,
     handleChange,
+    placeholder,
     label,
     hasInfo,
 }) => {
     return (
         <>
-            <div className="select-group">
+            <div className="input-group">
                 <div className="top-item flex">
                     <label>{label}</label>
 
                     {hasInfo.exist && <InfoIcon />}
                 </div>
 
-                <div className="select dark">
-                    <select
+                <div className="input light">
+                    <input
                         className="flex"
-                        value={defaultValue}
+                        value={value}
                         onChange={handleChange}
+                        placeholder={placeholder}
                     >
                         {children}
-                    </select>
-                    <Arrow />
+                    </input>
                 </div>
             </div>
         </>
     );
 };
 
-export default DropdownSelect;
+export default InputGroup;

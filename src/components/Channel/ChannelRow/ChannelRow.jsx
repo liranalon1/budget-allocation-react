@@ -1,5 +1,5 @@
 import './ChannelRow.scss';
-import Arrow from '../../Arrow/Arrow';
+import Arrow from '../../ArrowIcon/ArrowIcon';
 import EditChannel from './EditChannel/EditChannel';
 import { useContext, useState } from 'react';
 import { context } from '../../../App';

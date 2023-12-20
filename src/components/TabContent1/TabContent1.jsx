@@ -4,6 +4,7 @@ import ChannelRow from '../Channel/ChannelRow/ChannelRow';
 import ChannelContent from '../Channel/ChannelContent/ChannelContent';
 import DropdownSelect from '../DropdownSelect/DropdownSelect';
 import DropdownSelectOption from '../DropdownSelect/DropdownSelectOption';
+import InputGroup from '../InputGroup/InputGroup';
 
 const TabContent1 = ({ channelData }) => {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -38,6 +39,7 @@ const TabContent1 = ({ channelData }) => {
                                     defaultValue={selectedFrequency}
                                     handleChange={handleFrequencyChange}
                                     label="Budget Frequency"
+                                    hasInfo={{ exist: true, text: '' }}
                                 >
                                     <DropdownSelectOption optionValue="annually">
                                         Annually
@@ -49,6 +51,14 @@ const TabContent1 = ({ channelData }) => {
                                         Quarterly
                                     </DropdownSelectOption>
                                 </DropdownSelect>
+
+                                <InputGroup
+                                    value={selectedFrequency}
+                                    placeholder=""
+                                    handleChange={handleFrequencyChange}
+                                    label={`Baseline ${selectedFrequency} Budget`}
+                                    hasInfo={{ exist: true, text: '' }}
+                                />
                             </div>
                         </div>
                     </ChannelContent>
