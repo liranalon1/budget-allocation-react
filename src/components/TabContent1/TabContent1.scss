@@ -13,4 +13,22 @@
     .budget-top-items {
         gap: 3.5rem;
     }
+
+    .budget-breakdown {
+        margin-top: 3rem;
+        width: 70.5rem;
+        min-height: 17.9375rem;
+        padding: 1.5rem;
+        border-radius: 0.25rem;
+        border: 1px solid rgba(178, 187, 213, 0.5);
+        background: #f5f6fa;
+
+        .inputs-wrap {
+            margin-top: 1.5rem;
+            display: grid;
+            grid-template-rows: repeat(2, 1fr);
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1.5rem;
+        }
+    }
 }

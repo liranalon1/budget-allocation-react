@@ -71,6 +71,28 @@ const TabContent1 = ({ channelData }) => {
                                     hasInfo={{ exist: true, text: '' }}
                                 />
                             </div>
+
+                            <div className="budget-breakdown">
+                                <div className="top-title">
+                                    <h2>Budget Breakdown</h2>
+                                    <p>
+                                        By default, your budget will be equally
+                                        divided throughout the year. You can
+                                        manually change the budget allocation,
+                                        either now or later.
+                                    </p>
+                                    <div className="inputs-wrap">
+                                        <InputGroup
+                                            value={selectedFrequency}
+                                            placeholder=""
+                                            handleChange={handleFrequencyChange}
+                                            label="Jan 21"
+                                            hasInfo={{ exist: false }}
+                                            isDisabled={true}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </ChannelContent>
                 </div>

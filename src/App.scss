@@ -10,21 +10,15 @@
             letter-spacing: -0.0125rem;
         }
 
-        h2 {
-            font-size: 1.125rem;
-            font-style: normal;
-            font-weight: 600;
-            line-height: normal;
-            margin: 1rem 0 0.5rem;
-        }
+        .top-title {
+            margin-top: 1rem;
+            h2 {
+                font-size: 1.125rem;
+            }
 
-        p {
-            width: 42.375rem;
-            color: #99a4c2;
-            font-size: 0.875rem;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 1.3125rem;
+            p {
+                width: 42.375rem;
+            }
         }
 
         .add-channel {

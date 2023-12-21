@@ -1,32 +1,20 @@
-.select-group {
-    .top-item {
-        gap: 0.5rem;
+.select {
+    position: relative;
+    width: 14.125rem;
+    padding: 0;
+    select {
         align-items: center;
-        label {
-            margin-bottom: 0.5rem;
-        }
-        svg {
-            margin-bottom: 0.5rem;
-        }
+        width: 100%;
+        height: 100%;
+        padding: 0 1rem;
     }
-    .select {
-        position: relative;
-        width: 14.125rem;
-        padding: 0;
-        select {
-            align-items: center;
-            width: 100%;
-            height: 100%;
-            padding: 0 1rem;
-        }
-        .arrow {
-            width: 0.5rem;
-            height: 0.3125rem;
-            top: 50%;
-            right: 0;
-            position: absolute;
-            transform: translate(-1rem, -50%);
-            pointer-events: none;
-        }
+    .arrow {
+        width: 0.5rem;
+        height: 0.3125rem;
+        top: 50%;
+        right: 0;
+        position: absolute;
+        transform: translate(-1rem, -50%);
+        pointer-events: none;
     }
 }

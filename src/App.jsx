@@ -36,13 +36,15 @@ function App() {
                 <div className="top-content flex">
                     <div>
                         <h1>Build your budget plan</h1>
-
-                        <h2>Setup channels</h2>
-                        <p>
-                            Setup your added channels by adding baseline budgets
-                            out of your total budget. See the forecast impact
-                            with the help of tips and insights.
-                        </p>
+                        <div className="top-title">
+                            <h2>Setup channels</h2>
+                            <p>
+                                Setup your added channels by adding baseline
+                                budgets out of your total budget. See the
+                                forecast impact with the help of tips and
+                                insights.
+                            </p>
+                        </div>
                     </div>
                     <button
                         className="btn light add-channel"

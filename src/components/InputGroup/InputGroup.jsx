@@ -11,27 +11,27 @@ const InputGroup = ({
     isDisabled,
 }) => {
     return (
-        <>
-            <div className="input-group">
+        <div className="input-wrap flex">
+            <div className="input-top">
                 <div className="top-item flex">
                     <label>{label}</label>
 
                     {hasInfo.exist && <InfoIcon />}
                 </div>
-
-                <div className="input light">
-                    <input
-                        className="flex"
-                        value={value}
-                        onChange={handleChange}
-                        placeholder={placeholder}
-                        disabled={isDisabled}
-                    >
-                        {children}
-                    </input>
-                </div>
             </div>
-        </>
+
+            <div className="input light">
+                <input
+                    className="flex"
+                    value={value}
+                    onChange={handleChange}
+                    placeholder={placeholder}
+                    disabled={isDisabled}
+                >
+                    {children}
+                </input>
+            </div>
+        </div>
     );
 };
 
