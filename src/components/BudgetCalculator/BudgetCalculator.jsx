@@ -7,23 +7,8 @@ import DropdownSelect from '../DropdownSelect/DropdownSelect';
 import DropdownSelectOption from '../DropdownSelect/DropdownSelectOption';
 import InputGroup from '../InputGroup/InputGroup';
 import ToggleButton from '../ToggleButton/ToggleButton';
-
+import { months, numberWithCommas } from '../../helpers';
 const BudgetCalculator = () => {
-    const months = [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec',
-    ];
-
     const { channelData, setChannelData } = useContext(channelContext);
 
     const [selectedOption, setSelectedOption] = useState('Annually');
