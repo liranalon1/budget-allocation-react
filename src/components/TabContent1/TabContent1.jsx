@@ -10,9 +10,8 @@ import ToggleButton from '../ToggleButton/ToggleButton';
 const TabContent1 = ({ channelData }) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const [expandedRowId, setExpandedRowId] = useState(null);
-
     const [selectedFrequency, setSelectedFrequency] = useState('annually');
-    const [toggle, setToggle] = useState(false);
+    const [budgetAllocationValue, setBudgetAllocationValue] = useState(0); // 0 === 'equal' && 1 === 'Manual'
 
     const handleFrequencyChange = (e) => {
         setSelectedFrequency(e.target.value);
@@ -66,8 +65,8 @@ const TabContent1 = ({ channelData }) => {
                                 <ToggleButton
                                     leftLabel="Equal"
                                     rightLabel="Manual"
-                                    value={toggle}
-                                    handleChange={setToggle}
+                                    value={budgetAllocationValue}
+                                    handleChange={setBudgetAllocationValue}
                                     label="Budget Allocation"
                                     hasInfo={{ exist: true, text: '' }}
                                 />

@@ -11,7 +11,7 @@ const ToggleButton = ({
     label,
 }) => {
     const toggleState = () => {
-        handleChange(!value);
+        handleChange(value === 0 ? 1 : 0);
     };
 
     return (
@@ -29,7 +29,7 @@ const ToggleButton = ({
                     name="switchToggle"
                     value={leftLabel}
                     onChange={toggleState}
-                    checked={!value}
+                    checked={value === 0}
                 />
                 <label htmlFor="switch_left">{leftLabel}</label>
 
@@ -39,7 +39,7 @@ const ToggleButton = ({
                     name="switchToggle"
                     value={rightLabel}
                     onChange={toggleState}
-                    checked={value}
+                    checked={value === 1}
                 />
                 <label htmlFor="switch_right">{rightLabel}</label>
             </div>
