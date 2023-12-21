@@ -16,7 +16,7 @@ const BudgetCalculator = () => {
 
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
-        setBudget(0);
+        calculateBudget();
     };
 
     const handleBudgetChange = (event) => {
