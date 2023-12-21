@@ -8,9 +8,25 @@ import InputGroup from '../InputGroup/InputGroup';
 import ToggleButton from '../ToggleButton/ToggleButton';
 
 const TabContent1 = ({ channelData }) => {
+    const budgetFrequency = {
+        annually: {
+            id: 'annually',
+            name: 'Annually',
+        },
+        monthly: {
+            id: 'monthly',
+            name: 'Monthly',
+        },
+        quarterly: {
+            id: 'quarterly',
+            name: 'Quarterly',
+        },
+    };
     const [isExpanded, setIsExpanded] = useState(false);
     const [expandedRowId, setExpandedRowId] = useState(null);
-    const [selectedFrequency, setSelectedFrequency] = useState('annually');
+    const [selectedFrequency, setSelectedFrequency] = useState(
+        budgetFrequency['annually'].id
+    );
     const [budgetAllocationValue, setBudgetAllocationValue] = useState(0); // 0 === 'equal' && 1 === 'Manual'
 
     const handleFrequencyChange = (e) => {
@@ -82,6 +98,95 @@ const TabContent1 = ({ channelData }) => {
                                         either now or later.
                                     </p>
                                     <div className="inputs-wrap">
+                                        <InputGroup
+                                            currency="$"
+                                            value={selectedFrequency}
+                                            placeholder=""
+                                            handleChange={handleFrequencyChange}
+                                            label="Jan 21"
+                                            hasInfo={{ exist: false }}
+                                            isDisabled={true}
+                                        />
+                                        <InputGroup
+                                            value={selectedFrequency}
+                                            placeholder=""
+                                            handleChange={handleFrequencyChange}
+                                            label="Jan 21"
+                                            hasInfo={{ exist: false }}
+                                            isDisabled={true}
+                                        />
+                                        <InputGroup
+                                            value={selectedFrequency}
+                                            placeholder=""
+                                            handleChange={handleFrequencyChange}
+                                            label="Jan 21"
+                                            hasInfo={{ exist: false }}
+                                            isDisabled={true}
+                                        />
+                                        <InputGroup
+                                            value={selectedFrequency}
+                                            placeholder=""
+                                            handleChange={handleFrequencyChange}
+                                            label="Jan 21"
+                                            hasInfo={{ exist: false }}
+                                            isDisabled={true}
+                                        />
+                                        <InputGroup
+                                            value={selectedFrequency}
+                                            placeholder=""
+                                            handleChange={handleFrequencyChange}
+                                            label="Jan 21"
+                                            hasInfo={{ exist: false }}
+                                            isDisabled={true}
+                                        />
+                                        <InputGroup
+                                            value={selectedFrequency}
+                                            placeholder=""
+                                            handleChange={handleFrequencyChange}
+                                            label="Jan 21"
+                                            hasInfo={{ exist: false }}
+                                            isDisabled={true}
+                                        />
+                                        <InputGroup
+                                            value={selectedFrequency}
+                                            placeholder=""
+                                            handleChange={handleFrequencyChange}
+                                            label="Jan 21"
+                                            hasInfo={{ exist: false }}
+                                            isDisabled={true}
+                                        />
+                                        <InputGroup
+                                            value={selectedFrequency}
+                                            placeholder=""
+                                            handleChange={handleFrequencyChange}
+                                            label="Jan 21"
+                                            hasInfo={{ exist: false }}
+                                            isDisabled={true}
+                                        />
+                                        <InputGroup
+                                            value={selectedFrequency}
+                                            placeholder=""
+                                            handleChange={handleFrequencyChange}
+                                            label="Jan 21"
+                                            hasInfo={{ exist: false }}
+                                            isDisabled={true}
+                                        />
+                                        <InputGroup
+                                            value={selectedFrequency}
+                                            placeholder=""
+                                            handleChange={handleFrequencyChange}
+                                            label="Jan 21"
+                                            hasInfo={{ exist: false }}
+                                            isDisabled={true}
+                                        />
+                                        <InputGroup
+                                            value={selectedFrequency}
+                                            placeholder=""
+                                            handleChange={handleFrequencyChange}
+                                            label="Jan 21"
+                                            hasInfo={{ exist: false }}
+                                            isDisabled={true}
+                                        />
                                         <InputGroup
                                             value={selectedFrequency}
                                             placeholder=""

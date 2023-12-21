@@ -1,6 +1,8 @@
 .input {
     position: relative;
-    width: 14.125rem;
+    .currency {
+        margin-right: 0.5rem;
+    }
     input {
         align-items: center;
         width: 100%;
