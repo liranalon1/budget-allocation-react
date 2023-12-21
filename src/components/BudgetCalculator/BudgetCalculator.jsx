@@ -10,9 +10,13 @@ import ToggleButton from '../ToggleButton/ToggleButton';
 import { months, numberWithCommas } from '../../helpers';
 const BudgetCalculator = () => {
     const { channelData, setChannelData } = useContext(channelContext);
+    const [isExpanded, setIsExpanded] = useState(false);
+    const [expandedRowId, setExpandedRowId] = useState(null);
 
     const [selectedOption, setSelectedOption] = useState('Annually');
     const [budget, setBudget] = useState(0);
+    const [budgetAllocation, setBudgetAllocation] = useState(0); // 0 === 'equal' && 1 === 'Manual'
+    const [totalBudgetFields, setTotalBudgetFields] = useState(0);
 
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
@@ -23,6 +27,13 @@ const BudgetCalculator = () => {
         let num = event.target.value.replace(/,/g, '');
         setBudget(numberWithCommas(num));
     };
+
+    const handleTotalBudgetFields = (event) => {
+        let num = event.target.value.replace(/,/g, '');
+        setTotalBudgetFields(totalBudgetFields += num);
+    };
+
+
 
     const divideAndFormat = (number, divisor) => {
         const result = number / divisor;
@@ -49,11 +60,6 @@ const BudgetCalculator = () => {
                 return 0;
         }
     };
-
-    const [isExpanded, setIsExpanded] = useState(false);
-    const [expandedRowId, setExpandedRowId] = useState(null);
-
-    const [budgetAllocationValue, setBudgetAllocationValue] = useState(0); // 0 === 'equal' && 1 === 'Manual'
 
     return (
         <div className="budget-calculator flex">
@@ -92,19 +98,20 @@ const BudgetCalculator = () => {
                                 </DropdownSelect>
 
                                 <InputGroup
+                                    // value={budgetAllocation ? budget : totalBudgetFields}
                                     value={budget}
                                     placeholder=""
                                     handleChange={handleBudgetChange}
                                     label={`Baseline ${selectedOption} Budget`}
                                     info=""
-                                    // isDisabled={true}
+                                    isDisabled={budgetAllocation ? true : false}
                                 />
 
                                 <ToggleButton
                                     leftLabel="Equal"
                                     rightLabel="Manual"
-                                    value={budgetAllocationValue}
-                                    handleChange={setBudgetAllocationValue}
+                                    value={budgetAllocation}
+                                    handleChange={setBudgetAllocation}
                                     label="Budget Allocation"
                                     info=""
                                 />
@@ -124,10 +131,12 @@ const BudgetCalculator = () => {
                                             <div key={index}>
                                                 <InputGroup
                                                     currency="$"
+                                                    // value={budgetAllocation ? "" : calculateBudget()}
                                                     value={calculateBudget()}
                                                     placeholder=""
+                                                    handleChange={budgetAllocation ? handleBudgetChange : handleTotalBudgetFields}
                                                     label={`${month} 21`}
-                                                    isDisabled={true}
+                                                    isDisabled={budgetAllocation ? false : true}
                                                 />
                                             </div>
                                         ))}
