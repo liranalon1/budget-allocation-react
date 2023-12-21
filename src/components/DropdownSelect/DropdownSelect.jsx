@@ -2,13 +2,7 @@ import Arrow from '../ArrowIcon/ArrowIcon';
 import InfoIcon from '../InfoIcon/InfoIcon';
 import './DropdownSelect.scss';
 
-const DropdownSelect = ({
-    children,
-    defaultValue,
-    handleChange,
-    label,
-    info,
-}) => {
+const DropdownSelect = ({ children, value, handleChange, label, info }) => {
     return (
         <div className="input-wrap flex">
             <div className="input-top">
@@ -20,11 +14,7 @@ const DropdownSelect = ({
             </div>
 
             <div className="select dark">
-                <select
-                    className="flex"
-                    value={defaultValue}
-                    onChange={handleChange}
-                >
+                <select className="flex" value={value} onChange={handleChange}>
                     {children}
                 </select>
                 <Arrow />

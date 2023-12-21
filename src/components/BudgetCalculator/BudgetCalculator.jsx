@@ -11,30 +11,35 @@ import ToggleButton from '../ToggleButton/ToggleButton';
 const BudgetCalculator = () => {
     const { channelData, setChannelData } = useContext(channelContext);
 
-    const budgetFrequency = {
-        annually: {
-            id: 'annually',
-            name: 'Annually',
-        },
-        monthly: {
-            id: 'monthly',
-            name: 'Monthly',
-        },
-        quarterly: {
-            id: 'quarterly',
-            name: 'Quarterly',
-        },
+    const [selectedOption, setSelectedOption] = useState('Annually');
+    const [budget, setBudget] = useState(0);
+
+    const handleOptionChange = (event) => {
+        setSelectedOption(event.target.value);
+        setBudget(0);
     };
+
+    const handleBudgetChange = (event) => {
+        setBudget(event.target.value);
+    };
+
+    const calculateBudget = () => {
+        switch (selectedOption) {
+            case 'Annually':
+                return budget / 12;
+            case 'Monthly':
+                return budget;
+            case 'Quarterly':
+                return budget / 3;
+            default:
+                return 0;
+        }
+    };
+
     const [isExpanded, setIsExpanded] = useState(false);
     const [expandedRowId, setExpandedRowId] = useState(null);
-    const [selectedFrequency, setSelectedFrequency] = useState(
-        budgetFrequency['annually'].id
-    );
-    const [budgetAllocationValue, setBudgetAllocationValue] = useState(0); // 0 === 'equal' && 1 === 'Manual'
 
-    const handleFrequencyChange = (e) => {
-        setSelectedFrequency(e.target.value);
-    };
+    const [budgetAllocationValue, setBudgetAllocationValue] = useState(0); // 0 === 'equal' && 1 === 'Manual'
 
     return (
         <div className="budget-calculator flex">
@@ -56,27 +61,27 @@ const BudgetCalculator = () => {
                         <div className="budget-wrap">
                             <div className="budget-top-items flex">
                                 <DropdownSelect
-                                    defaultValue={selectedFrequency}
-                                    handleChange={handleFrequencyChange}
+                                    value={selectedOption}
+                                    handleChange={handleOptionChange}
                                     label="Budget Frequency"
                                     info=""
                                 >
-                                    <DropdownSelectOption optionValue="annually">
+                                    <DropdownSelectOption value="Annually">
                                         Annually
                                     </DropdownSelectOption>
-                                    <DropdownSelectOption optionValue="monthly">
+                                    <DropdownSelectOption value="Monthly">
                                         Monthly
                                     </DropdownSelectOption>
-                                    <DropdownSelectOption optionValue="quarterly">
+                                    <DropdownSelectOption value="Quarterly">
                                         Quarterly
                                     </DropdownSelectOption>
                                 </DropdownSelect>
 
                                 <InputGroup
-                                    value={selectedFrequency}
+                                    value={budget}
                                     placeholder=""
-                                    handleChange={handleFrequencyChange}
-                                    label={`Baseline ${selectedFrequency} Budget`}
+                                    handleChange={handleBudgetChange}
+                                    label={`Baseline ${selectedOption} Budget`}
                                     info=""
                                     // isDisabled={true}
                                 />
@@ -103,86 +108,85 @@ const BudgetCalculator = () => {
                                     <div className="inputs-wrap">
                                         <InputGroup
                                             currency="$"
-                                            value={selectedFrequency}
+                                            value={calculateBudget()}
                                             placeholder=""
-                                            handleChange={handleFrequencyChange}
                                             label="Jan 21"
                                             isDisabled={true}
                                         />
                                         <InputGroup
-                                            value={selectedFrequency}
+                                            currency="$"
+                                            value={calculateBudget()}
                                             placeholder=""
-                                            handleChange={handleFrequencyChange}
                                             label="Jan 21"
                                             isDisabled={true}
                                         />
                                         <InputGroup
-                                            value={selectedFrequency}
+                                            currency="$"
+                                            value={calculateBudget()}
                                             placeholder=""
-                                            handleChange={handleFrequencyChange}
                                             label="Jan 21"
                                             isDisabled={true}
                                         />
                                         <InputGroup
-                                            value={selectedFrequency}
+                                            currency="$"
+                                            value={calculateBudget()}
                                             placeholder=""
-                                            handleChange={handleFrequencyChange}
                                             label="Jan 21"
                                             isDisabled={true}
                                         />
                                         <InputGroup
-                                            value={selectedFrequency}
+                                            currency="$"
+                                            value={calculateBudget()}
                                             placeholder=""
-                                            handleChange={handleFrequencyChange}
                                             label="Jan 21"
                                             isDisabled={true}
                                         />
                                         <InputGroup
-                                            value={selectedFrequency}
+                                            currency="$"
+                                            value={calculateBudget()}
                                             placeholder=""
-                                            handleChange={handleFrequencyChange}
                                             label="Jan 21"
                                             isDisabled={true}
                                         />
                                         <InputGroup
-                                            value={selectedFrequency}
+                                            currency="$"
+                                            value={calculateBudget()}
                                             placeholder=""
-                                            handleChange={handleFrequencyChange}
                                             label="Jan 21"
                                             isDisabled={true}
                                         />
                                         <InputGroup
-                                            value={selectedFrequency}
+                                            currency="$"
+                                            value={calculateBudget()}
                                             placeholder=""
-                                            handleChange={handleFrequencyChange}
                                             label="Jan 21"
                                             isDisabled={true}
                                         />
                                         <InputGroup
-                                            value={selectedFrequency}
+                                            currency="$"
+                                            value={calculateBudget()}
                                             placeholder=""
-                                            handleChange={handleFrequencyChange}
                                             label="Jan 21"
                                             isDisabled={true}
                                         />
                                         <InputGroup
-                                            value={selectedFrequency}
+                                            currency="$"
+                                            value={calculateBudget()}
                                             placeholder=""
-                                            handleChange={handleFrequencyChange}
                                             label="Jan 21"
                                             isDisabled={true}
                                         />
                                         <InputGroup
-                                            value={selectedFrequency}
+                                            currency="$"
+                                            value={calculateBudget()}
                                             placeholder=""
-                                            handleChange={handleFrequencyChange}
                                             label="Jan 21"
                                             isDisabled={true}
                                         />
                                         <InputGroup
-                                            value={selectedFrequency}
+                                            currency="$"
+                                            value={calculateBudget()}
                                             placeholder=""
-                                            handleChange={handleFrequencyChange}
                                             label="Jan 21"
                                             isDisabled={true}
                                         />

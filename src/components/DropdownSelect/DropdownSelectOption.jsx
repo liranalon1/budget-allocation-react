@@ -1,7 +1,7 @@
-const DropdownSelectOption = ({ children, optionValue }) => {
+const DropdownSelectOption = ({ children, value }) => {
     return (
         <>
-            <option value={optionValue}>{children}</option>
+            <option value={value}>{children}</option>
         </>
     );
 };
