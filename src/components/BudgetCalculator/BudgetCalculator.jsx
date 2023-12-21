@@ -20,17 +20,31 @@ const BudgetCalculator = () => {
     };
 
     const handleBudgetChange = (event) => {
-        setBudget(event.target.value);
+        let num = event.target.value.replace(/,/g, '');
+        setBudget(numberWithCommas(num));
     };
 
+    const divideAndFormat = (number, divisor) => {
+        const result = number / divisor;
+        
+        // Check if there is a decimal part
+        if (result % 1 === 0) {
+          return result;
+        } else {
+          return result.toFixed(2);
+        }
+      }  
+
     const calculateBudget = () => {
+        let numWithoutComma = Number(budget.toString().replace(/,/g, ''));
+        
         switch (selectedOption) {
             case 'Annually':
-                return budget / 12;
+                return numberWithCommas(divideAndFormat(numWithoutComma, 12));
             case 'Monthly':
-                return budget;
+                return numberWithCommas(numWithoutComma);
             case 'Quarterly':
-                return budget / 3;
+                return numberWithCommas(divideAndFormat(numWithoutComma, 3));
             default:
                 return 0;
         }
@@ -83,7 +97,6 @@ const BudgetCalculator = () => {
                                     handleChange={handleBudgetChange}
                                     label={`Baseline ${selectedOption} Budget`}
                                     info=""
-                                    type="number"
                                     // isDisabled={true}
                                 />
 
@@ -115,7 +128,6 @@ const BudgetCalculator = () => {
                                                     placeholder=""
                                                     label={`${month} 21`}
                                                     isDisabled={true}
-                                                    type="number"
                                                 />
                                             </div>
                                         ))}
