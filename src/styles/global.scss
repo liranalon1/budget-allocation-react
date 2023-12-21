@@ -31,10 +31,9 @@ button {
     align-items: center;
     border-radius: 5px;
     padding: 0 1rem;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 0.75rem;
     font-style: normal;
-    font-weight: 600;
     line-height: 1rem;
     height: 2.5rem;
     border: 1px solid rgba(178, 187, 213, 0.5);
@@ -47,7 +46,7 @@ button {
 
     &.dark {
         background: #f5f6fa;
-        color: #707ea7;
+        // color: #707ea7;
     }
 }
 

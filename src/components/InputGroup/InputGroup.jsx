@@ -8,6 +8,7 @@ const InputGroup = ({
     placeholder,
     label,
     hasInfo,
+    isDisabled,
 }) => {
     return (
         <>
@@ -24,6 +25,7 @@ const InputGroup = ({
                         value={value}
                         onChange={handleChange}
                         placeholder={placeholder}
+                        disabled={isDisabled}
                     >
                         {children}
                     </input>

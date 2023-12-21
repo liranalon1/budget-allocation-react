@@ -5,12 +5,14 @@ import ChannelContent from '../Channel/ChannelContent/ChannelContent';
 import DropdownSelect from '../DropdownSelect/DropdownSelect';
 import DropdownSelectOption from '../DropdownSelect/DropdownSelectOption';
 import InputGroup from '../InputGroup/InputGroup';
+import ToggleButton from '../ToggleButton/ToggleButton';
 
 const TabContent1 = ({ channelData }) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const [expandedRowId, setExpandedRowId] = useState(null);
 
     const [selectedFrequency, setSelectedFrequency] = useState('annually');
+    const [toggle, setToggle] = useState(false);
 
     const handleFrequencyChange = (e) => {
         setSelectedFrequency(e.target.value);
@@ -57,6 +59,16 @@ const TabContent1 = ({ channelData }) => {
                                     placeholder=""
                                     handleChange={handleFrequencyChange}
                                     label={`Baseline ${selectedFrequency} Budget`}
+                                    hasInfo={{ exist: true, text: '' }}
+                                    // isDisabled={true}
+                                />
+
+                                <ToggleButton
+                                    leftLabel="Equal"
+                                    rightLabel="Manual"
+                                    value={toggle}
+                                    handleChange={setToggle}
+                                    label="Budget Allocation"
                                     hasInfo={{ exist: true, text: '' }}
                                 />
                             </div>
