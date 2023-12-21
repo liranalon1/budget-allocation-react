@@ -30,10 +30,8 @@ const BudgetCalculator = () => {
 
     const handleTotalBudgetFields = (event) => {
         let num = event.target.value.replace(/,/g, '');
-        setTotalBudgetFields(totalBudgetFields += num);
+        setTotalBudgetFields((prevTotalBudgetFields) => prevTotalBudgetFields + parseInt(num, 10));
     };
-
-
 
     const divideAndFormat = (number, divisor) => {
         const result = number / divisor;
@@ -131,7 +129,7 @@ const BudgetCalculator = () => {
                                             <div key={index}>
                                                 <InputGroup
                                                     currency="$"
-                                                    // value={budgetAllocation ? "" : calculateBudget()}
+                                                    // value={budgetAllocation ? null : calculateBudget()}
                                                     value={calculateBudget()}
                                                     placeholder=""
                                                     handleChange={budgetAllocation ? handleBudgetChange : handleTotalBudgetFields}
