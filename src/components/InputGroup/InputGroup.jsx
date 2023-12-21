@@ -9,6 +9,7 @@ const InputGroup = ({
     placeholder,
     label,
     info,
+    type,
     isDisabled,
 }) => {
     return (
@@ -25,6 +26,7 @@ const InputGroup = ({
                 {currency ? <span className="currency">{currency}</span> : null}
                 <input
                     className="flex"
+                    type={type}
                     value={value}
                     onChange={handleChange}
                     placeholder={placeholder}

@@ -9,6 +9,21 @@ import InputGroup from '../InputGroup/InputGroup';
 import ToggleButton from '../ToggleButton/ToggleButton';
 
 const BudgetCalculator = () => {
+    const months = [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec',
+    ];
+
     const { channelData, setChannelData } = useContext(channelContext);
 
     const [selectedOption, setSelectedOption] = useState('Annually');
@@ -83,6 +98,7 @@ const BudgetCalculator = () => {
                                     handleChange={handleBudgetChange}
                                     label={`Baseline ${selectedOption} Budget`}
                                     info=""
+                                    type="number"
                                     // isDisabled={true}
                                 />
 
@@ -106,90 +122,18 @@ const BudgetCalculator = () => {
                                         either now or later.
                                     </p>
                                     <div className="inputs-wrap">
-                                        <InputGroup
-                                            currency="$"
-                                            value={calculateBudget()}
-                                            placeholder=""
-                                            label="Jan 21"
-                                            isDisabled={true}
-                                        />
-                                        <InputGroup
-                                            currency="$"
-                                            value={calculateBudget()}
-                                            placeholder=""
-                                            label="Jan 21"
-                                            isDisabled={true}
-                                        />
-                                        <InputGroup
-                                            currency="$"
-                                            value={calculateBudget()}
-                                            placeholder=""
-                                            label="Jan 21"
-                                            isDisabled={true}
-                                        />
-                                        <InputGroup
-                                            currency="$"
-                                            value={calculateBudget()}
-                                            placeholder=""
-                                            label="Jan 21"
-                                            isDisabled={true}
-                                        />
-                                        <InputGroup
-                                            currency="$"
-                                            value={calculateBudget()}
-                                            placeholder=""
-                                            label="Jan 21"
-                                            isDisabled={true}
-                                        />
-                                        <InputGroup
-                                            currency="$"
-                                            value={calculateBudget()}
-                                            placeholder=""
-                                            label="Jan 21"
-                                            isDisabled={true}
-                                        />
-                                        <InputGroup
-                                            currency="$"
-                                            value={calculateBudget()}
-                                            placeholder=""
-                                            label="Jan 21"
-                                            isDisabled={true}
-                                        />
-                                        <InputGroup
-                                            currency="$"
-                                            value={calculateBudget()}
-                                            placeholder=""
-                                            label="Jan 21"
-                                            isDisabled={true}
-                                        />
-                                        <InputGroup
-                                            currency="$"
-                                            value={calculateBudget()}
-                                            placeholder=""
-                                            label="Jan 21"
-                                            isDisabled={true}
-                                        />
-                                        <InputGroup
-                                            currency="$"
-                                            value={calculateBudget()}
-                                            placeholder=""
-                                            label="Jan 21"
-                                            isDisabled={true}
-                                        />
-                                        <InputGroup
-                                            currency="$"
-                                            value={calculateBudget()}
-                                            placeholder=""
-                                            label="Jan 21"
-                                            isDisabled={true}
-                                        />
-                                        <InputGroup
-                                            currency="$"
-                                            value={calculateBudget()}
-                                            placeholder=""
-                                            label="Jan 21"
-                                            isDisabled={true}
-                                        />
+                                        {months.map((month, index) => (
+                                            <div key={index}>
+                                                <InputGroup
+                                                    currency="$"
+                                                    value={calculateBudget()}
+                                                    placeholder=""
+                                                    label={`${month} 21`}
+                                                    isDisabled={true}
+                                                    type="number"
+                                                />
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
                             </div>
