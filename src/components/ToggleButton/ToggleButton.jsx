@@ -7,7 +7,7 @@ const ToggleButton = ({
     rightLabel,
     value,
     handleChange,
-    hasInfo,
+    info,
     label,
 }) => {
     const toggleState = () => {
@@ -19,7 +19,7 @@ const ToggleButton = ({
             <div className="top-item flex">
                 <label>{label}</label>
 
-                {hasInfo.exist && <InfoIcon />}
+                {info !== undefined && <InfoIcon />}
             </div>
 
             <div className="toggle-button flex">

@@ -7,7 +7,7 @@ const DropdownSelect = ({
     defaultValue,
     handleChange,
     label,
-    hasInfo,
+    info,
 }) => {
     return (
         <div className="input-wrap flex">
@@ -15,7 +15,7 @@ const DropdownSelect = ({
                 <div className="top-item flex">
                     <label>{label}</label>
 
-                    {hasInfo.exist && <InfoIcon />}
+                    {info !== undefined && <InfoIcon />}
                 </div>
             </div>
 

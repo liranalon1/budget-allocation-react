@@ -8,7 +8,7 @@ const InputGroup = ({
     handleChange,
     placeholder,
     label,
-    hasInfo,
+    info,
     isDisabled,
 }) => {
     return (
@@ -17,14 +17,12 @@ const InputGroup = ({
                 <div className="top-item flex">
                     <label>{label}</label>
 
-                    {hasInfo.exist && <InfoIcon />}
+                    {info !== undefined && <InfoIcon />}
                 </div>
             </div>
 
             <div className="input light">
-                {currency !== '' ? (
-                    <span className="currency">{currency}</span>
-                ) : null}
+                {currency ? <span className="currency">{currency}</span> : null}
                 <input
                     className="flex"
                     value={value}

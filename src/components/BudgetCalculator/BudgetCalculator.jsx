@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import './TabContent1.scss';
+import './BudgetCalculator.scss';
+import { useContext, useState } from 'react';
+import { channelContext } from '../../App';
 import ChannelRow from '../Channel/ChannelRow/ChannelRow';
 import ChannelContent from '../Channel/ChannelContent/ChannelContent';
 import DropdownSelect from '../DropdownSelect/DropdownSelect';
@@ -7,7 +8,9 @@ import DropdownSelectOption from '../DropdownSelect/DropdownSelectOption';
 import InputGroup from '../InputGroup/InputGroup';
 import ToggleButton from '../ToggleButton/ToggleButton';
 
-const TabContent1 = ({ channelData }) => {
+const BudgetCalculator = () => {
+    const { channelData, setChannelData } = useContext(channelContext);
+
     const budgetFrequency = {
         annually: {
             id: 'annually',
@@ -34,7 +37,7 @@ const TabContent1 = ({ channelData }) => {
     };
 
     return (
-        <div className="tab-content1 flex">
+        <div className="budget-calculator flex">
             {channelData.map((row) => (
                 <div className="channel-wrap" key={row.id}>
                     <ChannelRow
@@ -56,7 +59,7 @@ const TabContent1 = ({ channelData }) => {
                                     defaultValue={selectedFrequency}
                                     handleChange={handleFrequencyChange}
                                     label="Budget Frequency"
-                                    hasInfo={{ exist: true, text: '' }}
+                                    info=""
                                 >
                                     <DropdownSelectOption optionValue="annually">
                                         Annually
@@ -74,7 +77,7 @@ const TabContent1 = ({ channelData }) => {
                                     placeholder=""
                                     handleChange={handleFrequencyChange}
                                     label={`Baseline ${selectedFrequency} Budget`}
-                                    hasInfo={{ exist: true, text: '' }}
+                                    info=""
                                     // isDisabled={true}
                                 />
 
@@ -84,7 +87,7 @@ const TabContent1 = ({ channelData }) => {
                                     value={budgetAllocationValue}
                                     handleChange={setBudgetAllocationValue}
                                     label="Budget Allocation"
-                                    hasInfo={{ exist: true, text: '' }}
+                                    info=""
                                 />
                             </div>
 
@@ -104,7 +107,6 @@ const TabContent1 = ({ channelData }) => {
                                             placeholder=""
                                             handleChange={handleFrequencyChange}
                                             label="Jan 21"
-                                            hasInfo={{ exist: false }}
                                             isDisabled={true}
                                         />
                                         <InputGroup
@@ -112,7 +114,6 @@ const TabContent1 = ({ channelData }) => {
                                             placeholder=""
                                             handleChange={handleFrequencyChange}
                                             label="Jan 21"
-                                            hasInfo={{ exist: false }}
                                             isDisabled={true}
                                         />
                                         <InputGroup
@@ -120,7 +121,6 @@ const TabContent1 = ({ channelData }) => {
                                             placeholder=""
                                             handleChange={handleFrequencyChange}
                                             label="Jan 21"
-                                            hasInfo={{ exist: false }}
                                             isDisabled={true}
                                         />
                                         <InputGroup
@@ -128,7 +128,6 @@ const TabContent1 = ({ channelData }) => {
                                             placeholder=""
                                             handleChange={handleFrequencyChange}
                                             label="Jan 21"
-                                            hasInfo={{ exist: false }}
                                             isDisabled={true}
                                         />
                                         <InputGroup
@@ -136,7 +135,6 @@ const TabContent1 = ({ channelData }) => {
                                             placeholder=""
                                             handleChange={handleFrequencyChange}
                                             label="Jan 21"
-                                            hasInfo={{ exist: false }}
                                             isDisabled={true}
                                         />
                                         <InputGroup
@@ -144,7 +142,6 @@ const TabContent1 = ({ channelData }) => {
                                             placeholder=""
                                             handleChange={handleFrequencyChange}
                                             label="Jan 21"
-                                            hasInfo={{ exist: false }}
                                             isDisabled={true}
                                         />
                                         <InputGroup
@@ -152,7 +149,6 @@ const TabContent1 = ({ channelData }) => {
                                             placeholder=""
                                             handleChange={handleFrequencyChange}
                                             label="Jan 21"
-                                            hasInfo={{ exist: false }}
                                             isDisabled={true}
                                         />
                                         <InputGroup
@@ -160,7 +156,6 @@ const TabContent1 = ({ channelData }) => {
                                             placeholder=""
                                             handleChange={handleFrequencyChange}
                                             label="Jan 21"
-                                            hasInfo={{ exist: false }}
                                             isDisabled={true}
                                         />
                                         <InputGroup
@@ -168,7 +163,6 @@ const TabContent1 = ({ channelData }) => {
                                             placeholder=""
                                             handleChange={handleFrequencyChange}
                                             label="Jan 21"
-                                            hasInfo={{ exist: false }}
                                             isDisabled={true}
                                         />
                                         <InputGroup
@@ -176,7 +170,6 @@ const TabContent1 = ({ channelData }) => {
                                             placeholder=""
                                             handleChange={handleFrequencyChange}
                                             label="Jan 21"
-                                            hasInfo={{ exist: false }}
                                             isDisabled={true}
                                         />
                                         <InputGroup
@@ -184,7 +177,6 @@ const TabContent1 = ({ channelData }) => {
                                             placeholder=""
                                             handleChange={handleFrequencyChange}
                                             label="Jan 21"
-                                            hasInfo={{ exist: false }}
                                             isDisabled={true}
                                         />
                                         <InputGroup
@@ -192,7 +184,6 @@ const TabContent1 = ({ channelData }) => {
                                             placeholder=""
                                             handleChange={handleFrequencyChange}
                                             label="Jan 21"
-                                            hasInfo={{ exist: false }}
                                             isDisabled={true}
                                         />
                                     </div>
@@ -205,4 +196,4 @@ const TabContent1 = ({ channelData }) => {
         </div>
     );
 };
-export default TabContent1;
+export default BudgetCalculator;

@@ -7,8 +7,8 @@ import TabItem from '@/components/Tabs/TabItem/TabItem';
 import TabContent from '@/components/Tabs/TabContent/TabContent';
 import TabContentItem from '@/components/Tabs/TabContent/TabContentItem/TabContentItem';
 
-import TabContent1 from '@/components/TabContent1/TabContent1';
-import TabContent2 from '@/components/TabContent2/TabContent2';
+import BudgetCalculator from '@/components/BudgetCalculator/BudgetCalculator';
+import BudgetEdit from '@/components/BudgetEdit/BudgetEdit';
 
 export const channelContext = createContext();
 
@@ -78,13 +78,10 @@ function App() {
 
                         <TabContent>
                             <TabContentItem>
-                                <TabContent1
-                                    channelData={channelData}
-                                    setChannelData={setChannelData}
-                                />
+                                <BudgetCalculator />
                             </TabContentItem>
                             <TabContentItem>
-                                <TabContent2 />
+                                <BudgetEdit />
                             </TabContentItem>
                         </TabContent>
                     </Tabs>
