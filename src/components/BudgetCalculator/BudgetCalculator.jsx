@@ -1,18 +1,18 @@
 import './BudgetCalculator.scss';
 import { useContext, useState } from 'react';
-import { channelContext } from '../../App';
+import { context } from '../../App';
 import ChannelRow from '../Channel/ChannelRow/ChannelRow';
 import ChannelContent from '../Channel/ChannelContent/ChannelContent';
 import DropdownSelect from '../DropdownSelect/DropdownSelect';
 import DropdownSelectOption from '../DropdownSelect/DropdownSelectOption';
 import InputGroup from '../InputGroup/InputGroup';
 import ToggleButton from '../ToggleButton/ToggleButton';
-import { months, numberWithCommas } from '../../helpers';
+import { numberWithCommas } from '../../helpers';
 const BudgetCalculator = () => {
-    const { channelData, setChannelData } = useContext(channelContext);
+    const { channelData, setChannelData, budgetPerMonth, setBudgetPerMonth } =
+        useContext(context);
     const [isExpanded, setIsExpanded] = useState(false);
     const [expandedRowId, setExpandedRowId] = useState(null);
-
     const [selectedOption, setSelectedOption] = useState('Annually');
     const [budget, setBudget] = useState(0);
     const [budgetAllocation, setBudgetAllocation] = useState(0); // 0 === 'equal' && 1 === 'Manual'
@@ -26,7 +26,7 @@ const BudgetCalculator = () => {
     const handleBudgetAllocationChange = (value) => {
         setBudgetAllocation(value);
         setTotalBudgetFields(0);
-        setBudget(0);   //  need to fix !!!!! try 120000 - bug
+        setBudget(0); //  need to fix !!!!! try 120000 - bug
         calculateBudget();
     };
 
@@ -35,26 +35,36 @@ const BudgetCalculator = () => {
         setBudget(numberWithCommas(num));
     };
 
-    const handleTotalBudgetFields = (event) => {
-        let num = event.target.value.replace(/,/g, '');
-        if(num === "") num = 0;
-        setTotalBudgetFields((prevTotalBudgetFields) => prevTotalBudgetFields += parseInt(num, 10));
+    const handleTotalBudgetFields = (value, index) => {
+        let num = value.replace(/,/g, '');
+        if (num === '') num = 0;
+
+        const updatedBudgetData = [...budgetPerMonth];
+        updatedBudgetData[index] = {
+            ...updatedBudgetData[index],
+            budget: parseInt(num, 10),
+        };
+
+        setBudgetPerMonth(updatedBudgetData);
+        setTotalBudgetFields(
+            updatedBudgetData.reduce((acc, curr) => acc + curr.budget, 0)
+        );
     };
 
     const divideAndFormat = (number, divisor) => {
         const result = number / divisor;
-        
+
         // Check if there is a decimal part
         if (result % 1 === 0) {
-          return result;
+            return result;
         } else {
-          return result.toFixed(2);
+            return result.toFixed(2);
         }
-      }  
+    };
 
     const calculateBudget = () => {
         let numWithoutComma = Number(budget.toString().replace(/,/g, ''));
-        
+
         switch (selectedOption) {
             case 'Annually':
                 return numberWithCommas(divideAndFormat(numWithoutComma, 12));
@@ -104,7 +114,11 @@ const BudgetCalculator = () => {
                                 </DropdownSelect>
 
                                 <InputGroup
-                                    value={budgetAllocation === 0 ? budget : totalBudgetFields}
+                                    value={
+                                        budgetAllocation === 0
+                                            ? budget
+                                            : totalBudgetFields
+                                    }
                                     // value={budget}
                                     placeholder=""
                                     handleChange={handleBudgetChange}
@@ -133,16 +147,29 @@ const BudgetCalculator = () => {
                                         either now or later.
                                     </p>
                                     <div className="inputs-wrap">
-                                        {months.map((month, index) => (
+                                        {budgetPerMonth.map((item, index) => (
                                             <div key={index}>
                                                 <InputGroup
                                                     currency="$"
-                                                    value={budgetAllocation === 0 ? calculateBudget() : ""}
+                                                    value={
+                                                        budgetAllocation === 0
+                                                            ? calculateBudget()
+                                                            : item.budget
+                                                    }
                                                     // value={calculateBudget()}
                                                     placeholder=""
-                                                    handleChange={budgetAllocation === 0 ? handleBudgetChange : handleTotalBudgetFields}
-                                                    label={`${month} 21`}
-                                                    isDisabled={budgetAllocation ? false : true}
+                                                    handleChange={(e) =>
+                                                        handleTotalBudgetFields(
+                                                            e.target.value,
+                                                            index
+                                                        )
+                                                    }
+                                                    label={`${item.month} 21`}
+                                                    isDisabled={
+                                                        budgetAllocation
+                                                            ? false
+                                                            : true
+                                                    }
                                                 />
                                             </div>
                                         ))}

@@ -9,7 +9,7 @@ const InputGroup = ({
     placeholder,
     label,
     info,
-    type = "text",
+    type = 'text',
     isDisabled,
 }) => {
     return (

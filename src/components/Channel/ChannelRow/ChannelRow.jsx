@@ -2,7 +2,7 @@ import './ChannelRow.scss';
 import Arrow from '../../ArrowIcon/ArrowIcon';
 import EditChannel from './EditChannel/EditChannel';
 import { useContext, useState } from 'react';
-import { channelContext } from '../../../App';
+import { context } from '../../../App';
 
 const ChannelRow = ({
     data,
@@ -11,7 +11,7 @@ const ChannelRow = ({
     expandedRowId,
     setExpandedRowId,
 }) => {
-    const { channelData, setChannelData } = useContext(channelContext);
+    const { channelData, setChannelData } = useContext(context);
     const [value, setValue] = useState(data.name);
     const [isEditMode, setIsEditMode] = useState(false);
 

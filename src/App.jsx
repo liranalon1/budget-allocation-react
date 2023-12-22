@@ -1,24 +1,21 @@
 import './App.scss';
 import { createContext, useState } from 'react';
-
+import { months } from '@/helpers';
 import Tabs from '@/components/Tabs/Tabs';
 import TabsNav from '@/components/Tabs/TabsNav/TabsNav';
 import TabItem from '@/components/Tabs/TabItem/TabItem';
 import TabContent from '@/components/Tabs/TabContent/TabContent';
 import TabContentItem from '@/components/Tabs/TabContent/TabContentItem/TabContentItem';
-
 import BudgetCalculator from '@/components/BudgetCalculator/BudgetCalculator';
 import BudgetEdit from '@/components/BudgetEdit/BudgetEdit';
 
-export const channelContext = createContext();
+export const context = createContext();
 
 function App() {
-    const [channelData, setChannelData] = useState([
-        {
-            id: 1,
-            name: 'Paid reviews',
-        },
-    ]);
+    const monthsWithBudget = months.map((month) => ({
+        month,
+        budget: 0,
+    }));
 
     const addChannel = () => {
         setChannelData((current) => [
@@ -29,6 +26,15 @@ function App() {
             },
         ]);
     };
+
+    const [channelData, setChannelData] = useState([
+        {
+            id: 1,
+            name: 'Paid reviews',
+        },
+    ]);
+
+    const [budgetPerMonth, setBudgetPerMonth] = useState(monthsWithBudget);
 
     return (
         <div className={`app`}>
@@ -67,8 +73,13 @@ function App() {
                     </button>
                 </div>
 
-                <channelContext.Provider
-                    value={{ channelData, setChannelData }}
+                <context.Provider
+                    value={{
+                        channelData,
+                        setChannelData,
+                        budgetPerMonth,
+                        setBudgetPerMonth,
+                    }}
                 >
                     <Tabs>
                         <TabsNav>
@@ -85,7 +96,7 @@ function App() {
                             </TabContentItem>
                         </TabContent>
                     </Tabs>
-                </channelContext.Provider>
+                </context.Provider>
             </div>
         </div>
     );
