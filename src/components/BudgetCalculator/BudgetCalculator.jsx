@@ -26,7 +26,7 @@ const BudgetCalculator = () => {
     const handleBudgetAllocationChange = (value) => {
         setBudgetAllocation(value);
         setTotalBudgetFields(0);
-        setBudget(0); //  need to fix !!!!! try 120000 - bug
+        setBudget(0);
         calculateBudget();
     };
 
@@ -117,9 +117,10 @@ const BudgetCalculator = () => {
                                     value={
                                         budgetAllocation === 0
                                             ? budget
-                                            : totalBudgetFields
+                                            : numberWithCommas(
+                                                  totalBudgetFields
+                                              )
                                     }
-                                    // value={budget}
                                     placeholder=""
                                     handleChange={handleBudgetChange}
                                     label={`Baseline ${selectedOption} Budget`}
@@ -154,9 +155,10 @@ const BudgetCalculator = () => {
                                                     value={
                                                         budgetAllocation === 0
                                                             ? calculateBudget()
-                                                            : item.budget
+                                                            : numberWithCommas(
+                                                                  item.budget
+                                                              )
                                                     }
-                                                    // value={calculateBudget()}
                                                     placeholder=""
                                                     handleChange={(e) =>
                                                         handleTotalBudgetFields(
