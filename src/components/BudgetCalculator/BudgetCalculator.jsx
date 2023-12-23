@@ -34,14 +34,6 @@ const BudgetCalculator = () => {
             newChannels[channelIndex] = {
                 ...newChannels[channelIndex],
                 budgetAllocation: allocationValue,
-                totalBudgetFields: 0,
-                baselineBudget: 0,
-                budgetPerMonths: channels[channelIndex].budgetPerMonths.map(
-                    ({ month, budget }) => ({
-                        month,
-                        budget: 0,
-                    })
-                ),
             };
 
             return newChannels;
@@ -191,7 +183,7 @@ const BudgetCalculator = () => {
                                             allocationValue: val,
                                             channelIndex: i,
                                         });
-                                        calculateBudget(channelIndex);
+                                        calculateBudget(i);
                                     }}
                                     label="Budget Allocation"
                                     info=""
