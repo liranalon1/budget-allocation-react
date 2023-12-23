@@ -42,7 +42,7 @@ const BudgetCalculator = () => {
         calculateBudget(channelIndex);
     };
 
-    const handleBudgetChange = ({ value, channelIndex }) => {
+    const baselineBudgetChange = ({ value, channelIndex }) => {
         let numWithoutCommas = value.replace(/,/g, '');
 
         setChannels((prevChannels) => {
@@ -162,7 +162,7 @@ const BudgetCalculator = () => {
                                     }
                                     placeholder=""
                                     handleChange={(e) =>
-                                        handleBudgetChange({
+                                        baselineBudgetChange({
                                             value: e.target.value,
                                             channelIndex: i,
                                         })
