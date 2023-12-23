@@ -2,7 +2,7 @@ import './ChannelRow.scss';
 import Arrow from '../../ArrowIcon/ArrowIcon';
 import EditChannel from './EditChannel/EditChannel';
 import { useContext, useState } from 'react';
-import { context } from '../../../App';
+import { channelContext } from '../../../App';
 
 const ChannelRow = ({
     data,
@@ -10,8 +10,9 @@ const ChannelRow = ({
     setIsExpanded,
     expandedRowId,
     setExpandedRowId,
+    channelIndex,
 }) => {
-    const { channelData, setChannelData } = useContext(context);
+    const { channels, setChannels } = useContext(channelContext);
     const [value, setValue] = useState(data.name);
     const [isEditMode, setIsEditMode] = useState(false);
 
@@ -20,24 +21,18 @@ const ChannelRow = ({
         setExpandedRowId(id);
     };
 
-    const handleChannelName = (value) => {
-        setValue(value);
-    };
+    const handleChannelName = (value) => setValue(value);
 
-    const handleInputBlur = (value) => {
-        handleChannelName(value);
+    const updateChannelName = () => {
+        setChannels((prevChannels) => {
+            const newChannels = [...prevChannels];
+            newChannels[channelIndex] = {
+                ...newChannels[channelIndex],
+                name: value,
+            };
 
-        const updatedData = channelData.map((i) => {
-            if (i.id === data.id) {
-                const obj = {
-                    id: data.id,
-                    name: value === '' ? 'New Channel' : value,
-                };
-                return { ...i, ...obj };
-            }
-            return i;
+            return newChannels;
         });
-        setChannelData(updatedData);
 
         setIsEditMode(false);
     };
@@ -75,14 +70,17 @@ const ChannelRow = ({
                     value={value}
                     onClick={(e) => e.stopPropagation()}
                     onChange={(e) => handleChannelName(e.target.value)}
-                    onBlur={(e) => handleInputBlur(e.target.value)}
+                    onBlur={updateChannelName}
                     autoFocus
                 />
             ) : (
                 <div className="channel-name">{data.name}</div>
             )}
 
-            <EditChannel data={data} setIsEditMode={setIsEditMode} />
+            <EditChannel
+                setIsEditMode={setIsEditMode}
+                channelIndex={channelIndex}
+            />
         </div>
     );
 };

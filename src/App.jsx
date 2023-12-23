@@ -9,32 +9,42 @@ import TabContentItem from '@/components/Tabs/TabContent/TabContentItem/TabConte
 import BudgetCalculator from '@/components/BudgetCalculator/BudgetCalculator';
 import BudgetEdit from '@/components/BudgetEdit/BudgetEdit';
 
-export const context = createContext();
+export const channelContext = createContext();
 
 function App() {
-    const monthsWithBudget = months.map((month) => ({
-        month,
-        budget: 0,
-    }));
-
-    const addChannel = () => {
-        setChannelData((current) => [
-            ...current,
-            {
-                id: current.at(-1)?.id + 1 || 1,
-                name: 'New Channel',
-            },
-        ]);
+    const defaultChannelData = {
+        // id: 1,
+        // name: 'Paid reviews',
+        isExpanded: false,
+        budgetFrequency: 'Annually',
+        baselineBudget: 0,
+        budgetAllocation: 0, // 0 === 'equal' && 1 === 'Manual'
+        budgetPerMonths: months.map((month) => ({
+            month,
+            budget: 0,
+        })),
+        totalBudgetFields: 0,
     };
 
-    const [channelData, setChannelData] = useState([
+    const [channels, setChannels] = useState([
         {
             id: 1,
             name: 'Paid reviews',
+            ...defaultChannelData,
         },
     ]);
 
-    const [budgetPerMonth, setBudgetPerMonth] = useState(monthsWithBudget);
+    const addChannel = () => {
+        const lastId = channels[channels.length - 1]?.id || 1;
+
+        const newChannel = {
+            id: lastId + 1,
+            name: 'New Channel',
+            ...defaultChannelData,
+        };
+
+        setChannels((current) => [...current, newChannel]);
+    };
 
     return (
         <div className={`app`}>
@@ -73,12 +83,10 @@ function App() {
                     </button>
                 </div>
 
-                <context.Provider
+                <channelContext.Provider
                     value={{
-                        channelData,
-                        setChannelData,
-                        budgetPerMonth,
-                        setBudgetPerMonth,
+                        channels,
+                        setChannels,
                     }}
                 >
                     <Tabs>
@@ -96,7 +104,7 @@ function App() {
                             </TabContentItem>
                         </TabContent>
                     </Tabs>
-                </context.Provider>
+                </channelContext.Provider>
             </div>
         </div>
     );

@@ -1,9 +1,9 @@
 import './EditChannel.scss';
 import { useContext, useState } from 'react';
-import { context } from '../../../../App';
+import { channelContext } from '../../../../App';
 
-const EditChannel = ({ data, setIsEditMode }) => {
-    const { channelData, setChannelData } = useContext(context);
+const EditChannel = ({ setIsEditMode, channelIndex }) => {
+    const { channels, setChannels } = useContext(channelContext);
 
     const [isExpanded, setIsExpanded] = useState(false);
 
@@ -17,11 +17,10 @@ const EditChannel = ({ data, setIsEditMode }) => {
     };
 
     const removeChannel = () => {
-        const updatedChannelData = [...channelData];
-        const currentIndex = data.id - 1;
-        updatedChannelData.splice(currentIndex, 1);
+        const updatedChannelData = [...channels];
+        updatedChannelData.splice(channelIndex, 1);
 
-        setChannelData(updatedChannelData);
+        setChannels(updatedChannelData);
         setIsExpanded(false);
     };
 
