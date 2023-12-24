@@ -45,10 +45,19 @@ const BudgetCalculator = () => {
     const baselineBudgetChange = ({ value, channelIndex }) => {
         let numWithoutCommas = value.replace(/,/g, '');
 
+        const updatedBudgetData = [...channels[channelIndex].budgetPerMonths];
+        updatedBudgetData.map((item) => {
+            return {
+                ...updatedBudgetData[item],
+                budget: parseInt(numWithoutCommas, 10),
+            };
+        });
+
         setChannels((prevChannels) => {
             const newChannels = [...prevChannels];
             newChannels[channelIndex] = {
                 ...newChannels[channelIndex],
+                budgetPerMonths: updatedBudgetData,
                 baselineBudget: numWithoutCommas,
             };
 
@@ -57,13 +66,13 @@ const BudgetCalculator = () => {
     };
 
     const handleTotalBudgetFields = ({ value, channelIndex, monthIndex }) => {
-        let num = value.replace(/,/g, '');
-        if (num === '') num = 0;
+        let numWithoutCommas = value.replace(/,/g, '');
+        if (numWithoutCommas === '') numWithoutCommas = 0;
 
         const updatedBudgetData = [...channels[channelIndex].budgetPerMonths];
         updatedBudgetData[monthIndex] = {
             ...updatedBudgetData[monthIndex],
-            budget: parseInt(num, 10),
+            budget: parseInt(numWithoutCommas, 10),
         };
 
         setChannels((prevChannels) => {

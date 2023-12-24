@@ -5,7 +5,6 @@ import { numberWithCommas } from '../../../helpers';
 
 const ChannelMonthRow = ({ channel, channelIndex }) => {
     const { channels, setChannels } = useContext(channelContext);
-
     return (
         <div className={`channel-month-row grid`}>
             <div className="left-side flex">
