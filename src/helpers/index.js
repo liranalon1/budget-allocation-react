@@ -19,8 +19,11 @@ function checkIfArray(arr) {
     return true;
 }
 
-function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+function addCommas(num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+function removeCommas(num) {
+    return Number(num.toString().replace(/,/g, ''))
 }
 
-export { checkIfArray, numberWithCommas, months };
+export { checkIfArray, addCommas, removeCommas, months };

@@ -1,7 +1,7 @@
 import './ChannelMonthRow.scss';
 import { useContext, useState } from 'react';
 import { channelContext } from '../../../App';
-import { numberWithCommas } from '../../../helpers';
+import { addCommas } from '../../../helpers';
 
 const ChannelMonthRow = ({ channel, channelIndex }) => {
     const { channels, setChannels } = useContext(channelContext);
@@ -38,7 +38,7 @@ const ChannelMonthRow = ({ channel, channelIndex }) => {
                 <div className="budgets flex">
                     {channel.budgetPerMonths.map(({ budget }, i) => (
                         <div className="budget" key={i}>
-                            ${numberWithCommas(budget)}
+                            ${addCommas(budget)}
                         </div>
                     ))}
                 </div>
