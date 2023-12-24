@@ -23,7 +23,7 @@ function addCommas(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 function removeCommas(num) {
-    return Number(num.toString().replace(/,/g, ''))
+    return Number(num.toString().replace(/,/g, ''));
 }
 
 export { checkIfArray, addCommas, removeCommas, months };

@@ -42,8 +42,9 @@ const BudgetCalculator = () => {
         calculateBudget(channelIndex);
     };
 
-    const baselineBudgetChange = ({ value, channelIndex }) => {
+    const updateBaselineBudget = ({ value, channelIndex }) => {
         const updatedBudgetData = [...channels[channelIndex].budgetPerMonths];
+
         updatedBudgetData.map((item) => {
             return {
                 ...updatedBudgetData[item],
@@ -63,7 +64,7 @@ const BudgetCalculator = () => {
         });
     };
 
-    const updateTotalBudgetFields = ({ value, channelIndex, monthIndex }) => {
+    const updateTotalBudget = ({ value, channelIndex, monthIndex }) => {
         let num = removeCommas(value);
         if (num === '') num = 0;
 
@@ -80,7 +81,7 @@ const BudgetCalculator = () => {
                 budgetPerMonths: updatedBudgetData,
                 totalBudgetFields: updatedBudgetData.reduce(
                     (acc, curr) => acc + curr.budget,
-                    0
+                    0,
                 ),
             };
 
@@ -100,7 +101,7 @@ const BudgetCalculator = () => {
     };
 
     const calculateBudget = (channelIndex) => {
-        let num = removeCommas(channels[channelIndex].baselineBudget)
+        let num = removeCommas(channels[channelIndex].baselineBudget);
 
         const selectedOption = channels[channelIndex].budgetFrequency;
 
@@ -159,21 +160,19 @@ const BudgetCalculator = () => {
                                     value={
                                         channels[i].budgetAllocation === 0
                                             ? addCommas(
-                                                  channels[i].baselineBudget
+                                                  channels[i].baselineBudget,
                                               )
                                             : addCommas(
-                                                  channels[i].totalBudgetFields
+                                                  channels[i].totalBudgetFields,
                                               )
                                     }
                                     placeholder=""
                                     handleChange={(e) => {
-                                        baselineBudgetChange({
+                                        updateBaselineBudget({
                                             value: e.target.value,
                                             channelIndex: i,
-                                        });                                        
-                                    }
-                                        
-                                    }
+                                        });
+                                    }}
                                     label={`Baseline ${channel.budgetFrequency} Budget`}
                                     info=""
                                     isDisabled={
@@ -217,29 +216,30 @@ const BudgetCalculator = () => {
                                                                 .budgetAllocation ===
                                                             0
                                                                 ? calculateBudget(
-                                                                      i
+                                                                      i,
                                                                   )
                                                                 : addCommas(
-                                                                      budget
+                                                                      budget,
                                                                   )
                                                         }
                                                         placeholder=""
-                                                        handleChange={(e) =>
-                                                            updateTotalBudgetFields(
-                                                                {
-                                                                    value: e.target.value,
-                                                                    channelIndex: i,
-                                                                    monthIndex: j,
-                                                                }
-                                                            )
-                                                        }
+                                                        handleChange={(e) => {
+                                                            updateTotalBudget({
+                                                                value: e.target
+                                                                    .value,
+                                                                channelIndex: i,
+                                                                monthIndex: j,
+                                                            });
+                                                        }}
                                                         label={`${month} 21`}
                                                         isDisabled={
-                                                            channels[i].budgetAllocation === 0
+                                                            channels[i]
+                                                                .budgetAllocation ===
+                                                            0
                                                         }
                                                     />
                                                 </div>
-                                            )
+                                            ),
                                         )}
                                     </div>
                                 </div>
