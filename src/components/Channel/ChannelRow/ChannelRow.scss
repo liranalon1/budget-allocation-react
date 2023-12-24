@@ -11,10 +11,12 @@
         display: flex;
         margin-left: 1.88rem;
     }
-
+    .arrow {
+        transform: rotate(180deg);
+    }
     &.is-expanded {
         .arrow {
-            transform: rotate(180deg);
+            transform: rotate(0deg);
         }
     }
 

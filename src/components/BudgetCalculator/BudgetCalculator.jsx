@@ -212,30 +212,21 @@ const BudgetCalculator = () => {
                                                     <InputGroup
                                                         currency="$"
                                                         value={
-                                                            channels[i]
-                                                                .budgetAllocation ===
-                                                            0
-                                                                ? calculateBudget(
-                                                                      i,
-                                                                  )
-                                                                : addCommas(
-                                                                      budget,
-                                                                  )
+                                                            channels[i].budgetAllocation === 0
+                                                                ? calculateBudget(i)
+                                                                : addCommas(budget)
                                                         }
                                                         placeholder=""
                                                         handleChange={(e) => {
                                                             updateTotalBudget({
-                                                                value: e.target
-                                                                    .value,
+                                                                value: e.target.value,
                                                                 channelIndex: i,
                                                                 monthIndex: j,
                                                             });
                                                         }}
                                                         label={`${month} 21`}
                                                         isDisabled={
-                                                            channels[i]
-                                                                .budgetAllocation ===
-                                                            0
+                                                            channels[i].budgetAllocation === 0
                                                         }
                                                     />
                                                 </div>
