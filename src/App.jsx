@@ -12,39 +12,44 @@ import BudgetEdit from '@/components/BudgetEdit/BudgetEdit';
 export const channelContext = createContext();
 
 function App() {
+    
     const defaultChannelData = {
-        // id: 1,
-        // name: 'Paid reviews',
         isExpanded: false,
         budgetFrequency: 'Annually',
         baselineBudget: 0,
-        budgetAllocation: 0, // 0 === 'equal' && 1 === 'Manual'
+        budgetAllocation: 0,    // 0 === 'equal' && 1 === 'Manual'
+        currency: "$",
         budgetPerMonths: months.map((month) => ({
             month,
             budget: 0,
         })),
         totalBudgetFields: 0,
-    };
+    }
 
     const [channels, setChannels] = useState([
         {
             id: 1,
             name: 'Paid reviews',
-            ...defaultChannelData,
-        },
+            ...defaultChannelData
+        }
     ]);
 
     const addChannel = () => {
         const lastId = channels[channels.length - 1]?.id || 1;
-
+    
         const newChannel = {
             id: lastId + 1,
             name: 'New Channel',
-            ...defaultChannelData,
+            ...defaultChannelData
         };
-
-        setChannels((current) => [...current, newChannel]);
-    };
+    
+        setChannels(current => 
+            [
+                ...current,
+                newChannel
+            ]
+        );
+    };   
 
     return (
         <div className={`app`}>
