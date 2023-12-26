@@ -1,55 +1,50 @@
 import './App.scss';
 import { createContext, useState } from 'react';
 import { months } from '@/helpers';
-import Tabs from '@/components/Tabs/Tabs';
-import TabsNav from '@/components/Tabs/TabsNav/TabsNav';
-import TabItem from '@/components/Tabs/TabItem/TabItem';
-import TabContent from '@/components/Tabs/TabContent/TabContent';
-import TabContentItem from '@/components/Tabs/TabContent/TabContentItem/TabContentItem';
 import BudgetCalculator from '@/components/BudgetCalculator/BudgetCalculator';
 import BudgetEdit from '@/components/BudgetEdit/BudgetEdit';
 
 export const channelContext = createContext();
 
 function App() {
-    
+    const [activeTab, setActiveTab] = useState('tab1');
+
     const defaultChannelData = {
         isExpanded: false,
         budgetFrequency: 'Annually',
         baselineBudget: 0,
-        budgetAllocation: 0,    // 0 === 'equal' && 1 === 'Manual'
-        currency: "$",
+        budgetAllocation: 0, // 0 === 'equal' && 1 === 'Manual'
+        currency: '$',
         budgetPerMonths: months.map((month) => ({
             month,
             budget: 0,
         })),
         totalBudgetFields: 0,
-    }
+    };
 
     const [channels, setChannels] = useState([
         {
             id: 1,
             name: 'Paid reviews',
-            ...defaultChannelData
-        }
+            ...defaultChannelData,
+        },
     ]);
 
     const addChannel = () => {
         const lastId = channels[channels.length - 1]?.id || 1;
-    
+
         const newChannel = {
             id: lastId + 1,
             name: 'New Channel',
-            ...defaultChannelData
+            ...defaultChannelData,
         };
-    
-        setChannels(current => 
-            [
-                ...current,
-                newChannel
-            ]
-        );
-    };   
+
+        setChannels((current) => [...current, newChannel]);
+    };
+
+    const handleTabClick = (tab) => {
+        setActiveTab(tab);
+    };
 
     return (
         <div className={`app`}>
@@ -94,21 +89,27 @@ function App() {
                         setChannels,
                     }}
                 >
-                    <Tabs>
-                        <TabsNav>
-                            <TabItem>Tab 1</TabItem>
-                            <TabItem>Tab 2</TabItem>
-                        </TabsNav>
+                    <div className="tabs">
+                        <ul className="tab-list flex">
+                            <li
+                                onClick={() => handleTabClick('tab1')}
+                                className={activeTab === 'tab1' ? 'active' : ''}
+                            >
+                                Tab 1
+                            </li>
+                            <li
+                                onClick={() => handleTabClick('tab2')}
+                                className={activeTab === 'tab2' ? 'active' : ''}
+                            >
+                                Tab 2
+                            </li>
+                        </ul>
+                    </div>
 
-                        <TabContent>
-                            <TabContentItem>
-                                <BudgetCalculator />
-                            </TabContentItem>
-                            <TabContentItem>
-                                <BudgetEdit />
-                            </TabContentItem>
-                        </TabContent>
-                    </Tabs>
+                    <div className="tab-content">
+                        {activeTab === 'tab1' && <BudgetCalculator />}
+                        {activeTab === 'tab2' && <BudgetEdit />}
+                    </div>
                 </channelContext.Provider>
             </div>
         </div>

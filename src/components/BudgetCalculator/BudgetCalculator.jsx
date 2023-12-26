@@ -13,7 +13,7 @@ const BudgetCalculator = () => {
     const [isExpanded, setIsExpanded] = useState(false);
     const [expandedRowId, setExpandedRowId] = useState(null);
 
-    const updateBudgetFrequency = ({value, channelIndex}) => {
+    const updateBudgetFrequency = ({ value, channelIndex }) => {
         setChannels((prevChannels) => {
             const newChannels = [...prevChannels];
             newChannels[channelIndex] = {
@@ -36,7 +36,7 @@ const BudgetCalculator = () => {
             return newChannels;
         });
 
-        calculateBudget({channelIndex: channelIndex});
+        calculateBudget({ channelIndex: channelIndex });
     };
 
     const updateBaselineBudget = ({ value, channelIndex }) => {
@@ -59,10 +59,12 @@ const BudgetCalculator = () => {
         updatedBudgetData.map((month, i) => {
             updatedBudgetData[i] = {
                 ...updatedBudgetData[i],
-                budget: Number(calculateBudget({value: num, channelIndex: channelIndex})),
+                budget: Number(
+                    calculateBudget({ value: num, channelIndex: channelIndex }),
+                ),
             };
-        })
-        
+        });
+
         setChannels((prevChannels) => {
             const newChannels = [...prevChannels];
             newChannels[channelIndex] = {
@@ -109,8 +111,10 @@ const BudgetCalculator = () => {
         }
     };
 
-    const calculateBudget = ({value, channelIndex}) => {
-        const num = removeCommas(value) || removeCommas(channels[channelIndex].baselineBudget);
+    const calculateBudget = ({ value, channelIndex }) => {
+        const num =
+            removeCommas(value) ||
+            removeCommas(channels[channelIndex].baselineBudget);
         const selectedOption = channels[channelIndex].budgetFrequency;
 
         switch (selectedOption) {
@@ -148,8 +152,14 @@ const BudgetCalculator = () => {
                                 <DropdownSelect
                                     value={channel.budgetFrequency}
                                     handleChange={(e) => {
-                                        updateBudgetFrequency({value: e.target.value, channelIndex: i});
-                                        updateBudgetPerMonth({value: channels[i].baselineBudget, channelIndex: i});
+                                        updateBudgetFrequency({
+                                            value: e.target.value,
+                                            channelIndex: i,
+                                        });
+                                        updateBudgetPerMonth({
+                                            value: channels[i].baselineBudget,
+                                            channelIndex: i,
+                                        });
                                     }}
                                     label="Budget Frequency"
                                     info=""
@@ -167,9 +177,13 @@ const BudgetCalculator = () => {
 
                                 <InputGroup
                                     value={
-                                        channels[i].budgetAllocation === 0 
-                                            ? addCommas(channels[i].baselineBudget)
-                                            : addCommas(channels[i].totalBudgetFields)
+                                        channels[i].budgetAllocation === 0
+                                            ? addCommas(
+                                                  channels[i].baselineBudget,
+                                              )
+                                            : addCommas(
+                                                  channels[i].totalBudgetFields,
+                                              )
                                     }
                                     placeholder=""
                                     handleChange={(e) => {
@@ -198,8 +212,11 @@ const BudgetCalculator = () => {
                                             allocationValue: val,
                                             channelIndex: i,
                                         });
-                                        calculateBudget({channelIndex: i});
-                                        updateBudgetPerMonth({value: channels[i].baselineBudget, channelIndex: i});
+                                        calculateBudget({ channelIndex: i });
+                                        updateBudgetPerMonth({
+                                            value: channels[i].baselineBudget,
+                                            channelIndex: i,
+                                        });
                                     }}
                                     label="Budget Allocation"
                                     info=""
@@ -220,23 +237,39 @@ const BudgetCalculator = () => {
                                             ({ month, budget }, j) => (
                                                 <div key={j}>
                                                     <InputGroup
-                                                        currency={channels[i].currency}
+                                                        currency={
+                                                            channels[i].currency
+                                                        }
                                                         value={
-                                                            channels[i].budgetAllocation === 0
-                                                                ? addCommas(calculateBudget({channelIndex: i}))
-                                                                : addCommas(budget)
+                                                            channels[i]
+                                                                .budgetAllocation ===
+                                                            0
+                                                                ? addCommas(
+                                                                      calculateBudget(
+                                                                          {
+                                                                              channelIndex:
+                                                                                  i,
+                                                                          },
+                                                                      ),
+                                                                  )
+                                                                : addCommas(
+                                                                      budget,
+                                                                  )
                                                         }
                                                         placeholder=""
                                                         handleChange={(e) => {
                                                             updateTotalBudget({
-                                                                value: e.target.value,
+                                                                value: e.target
+                                                                    .value,
                                                                 channelIndex: i,
                                                                 monthIndex: j,
                                                             });
                                                         }}
                                                         label={`${month} 21`}
                                                         isDisabled={
-                                                            channels[i].budgetAllocation === 0
+                                                            channels[i]
+                                                                .budgetAllocation ===
+                                                            0
                                                         }
                                                     />
                                                 </div>
