@@ -59,7 +59,7 @@ const BudgetCalculator = () => {
         updatedBudgetData.map((month, i) => {
             updatedBudgetData[i] = {
                 ...updatedBudgetData[i],
-                budget: calculateBudget({value: num, channelIndex: channelIndex}),
+                budget: Number(calculateBudget({value: num, channelIndex: channelIndex})),
             };
         })
         
@@ -81,7 +81,7 @@ const BudgetCalculator = () => {
         const updatedBudgetData = [...channels[channelIndex].budgetPerMonths];
         updatedBudgetData[monthIndex] = {
             ...updatedBudgetData[monthIndex],
-            budget: parseInt(num, 10),
+            budget: num,
         };
 
         setChannels((prevChannels) => {
@@ -110,7 +110,7 @@ const BudgetCalculator = () => {
     };
 
     const calculateBudget = ({value, channelIndex}) => {
-        const num = value || removeCommas(channels[channelIndex].baselineBudget);
+        const num = removeCommas(value) || removeCommas(channels[channelIndex].baselineBudget);
         const selectedOption = channels[channelIndex].budgetFrequency;
 
         switch (selectedOption) {
@@ -167,13 +167,9 @@ const BudgetCalculator = () => {
 
                                 <InputGroup
                                     value={
-                                        channels[i].budgetAllocation === 0
-                                            ? addCommas(
-                                                  channels[i].baselineBudget,
-                                              )
-                                            : addCommas(
-                                                  channels[i].totalBudgetFields,
-                                              )
+                                        channels[i].budgetAllocation === 0 
+                                            ? addCommas(channels[i].baselineBudget)
+                                            : addCommas(channels[i].totalBudgetFields)
                                     }
                                     placeholder=""
                                     handleChange={(e) => {
