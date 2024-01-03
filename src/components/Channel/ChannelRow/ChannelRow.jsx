@@ -1,48 +1,35 @@
 import './ChannelRow.scss';
 import Arrow from '../../ArrowIcon/ArrowIcon';
 import EditChannel from './EditChannel/EditChannel';
-import { useContext, useState } from 'react';
-import { channelContext } from '../../../App';
+import { useState } from 'react';
 
 const ChannelRow = ({
-    data,
+    channelName,
+    setChannelName,
     isExpanded,
     setIsExpanded,
-    expandedRowId,
-    setExpandedRowId,
     channelIndex,
 }) => {
-    const { channels, setChannels } = useContext(channelContext);
-    const [value, setValue] = useState(data.name);
+    const [value, setValue] = useState(channelName);
     const [isEditMode, setIsEditMode] = useState(false);
 
-    const handleToggle = (id) => {
+    const handleToggle = () => {
         setIsExpanded(!isExpanded);
-        setExpandedRowId(id);
     };
 
     const handleChannelName = (value) => setValue(value);
 
     const updateChannelName = () => {
-        setChannels((prevChannels) => {
-            const newChannels = [...prevChannels];
-            newChannels[channelIndex] = {
-                ...newChannels[channelIndex],
-                name: value,
-            };
-
-            return newChannels;
-        });
-
+        setChannelName(value);
         setIsEditMode(false);
     };
 
     return (
         <div
             className={`channel-row flex ${
-                isExpanded && data.id === expandedRowId ? 'is-expanded' : ''
+                isExpanded ? 'is-expanded' : ''
             }`}
-            onClick={() => handleToggle(data.id)}
+            onClick={() => handleToggle()}
         >
             <Arrow />
 
@@ -74,7 +61,7 @@ const ChannelRow = ({
                     autoFocus
                 />
             ) : (
-                <div className="channel-name">{data.name}</div>
+                <div className="channel-name">{channelName}</div>
             )}
 
             <EditChannel

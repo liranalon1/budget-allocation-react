@@ -10,16 +10,15 @@ function App() {
     const [activeTab, setActiveTab] = useState('tab1');
 
     const defaultChannelData = {
-        isExpanded: false,
-        budgetFrequency: 'Annually',
-        baselineBudget: 0,
-        budgetAllocation: 0, // 0 === 'equal' && 1 === 'Manual'
         currency: '$',
+        baselineBudget: 0,
+        budgetFrequency: 'Annually',
+        budgetAllocation: 0,
         budgetPerMonths: months.map((month) => ({
             month,
             budget: 0,
         })),
-        totalBudgetFields: 0,
+        isExpanded: false,
     };
 
     const [channels, setChannels] = useState([

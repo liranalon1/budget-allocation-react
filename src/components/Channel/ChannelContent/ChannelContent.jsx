@@ -1,9 +1,9 @@
 import './ChannelContent.scss';
 
-const ChannelContent = ({ children, isExpanded, id, expandedRowId }) => {
+const ChannelContent = ({ children, isExpanded }) => {
     return (
         <>
-            {isExpanded && id === expandedRowId && (
+            {isExpanded && (
                 <div
                     className={`channel-content ${
                         isExpanded ? 'is-expanded' : ''
