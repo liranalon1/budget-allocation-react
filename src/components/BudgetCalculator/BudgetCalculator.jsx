@@ -1,14 +1,14 @@
 import './BudgetCalculator.scss';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { channelContext } from '../../App';
 import Channel from '../Channel/Channel';
 
 const BudgetCalculator = () => {
-    const { channels } = useContext(channelContext);
+    const { allChannels } = useContext(channelContext);
 
     return (
         <div className="budget-calculator flex">
-            {channels.map((channel, i) => (
+            {allChannels.map((channel, i) => (
                 <Channel key={channel.id} data={channel} channelIndex={i}/>
             ))}
         </div>

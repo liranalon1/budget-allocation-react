@@ -5,7 +5,7 @@ import { months } from '../../helpers';
 import ChannelMonthRow from '../Channel/ChannelMonthRow/ChannelMonthRow';
 
 const BudgetEdit = () => {
-    const { channels, setChannels } = useContext(channelContext);
+    const { allChannels, setAllChannels } = useContext(channelContext);
 
     return (
         <div className="budget-edit">
@@ -55,7 +55,7 @@ const BudgetEdit = () => {
                 </div>
             </div>
 
-            {channels.map((channel, i) => (
+            {allChannels.map((channel, i) => (
                 <ChannelMonthRow
                     channel={channel}
                     channelIndex={i}

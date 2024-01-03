@@ -21,7 +21,7 @@ function App() {
         isExpanded: false,
     };
 
-    const [channels, setChannels] = useState([
+    const [allChannels, setAllChannels] = useState([
         {
             id: 1,
             name: 'Paid reviews',
@@ -30,7 +30,7 @@ function App() {
     ]);
 
     const addChannel = () => {
-        const lastId = channels[channels.length - 1]?.id || 1;
+        const lastId = allChannels[allChannels.length - 1]?.id || 1;
 
         const newChannel = {
             id: lastId + 1,
@@ -38,7 +38,7 @@ function App() {
             ...defaultChannelData,
         };
 
-        setChannels((current) => [...current, newChannel]);
+        setAllChannels((current) => [...current, newChannel]);
     };
 
     const handleTabClick = (tab) => {
@@ -84,8 +84,8 @@ function App() {
 
                 <channelContext.Provider
                     value={{
-                        channels,
-                        setChannels,
+                        allChannels,
+                        setAllChannels,
                     }}
                 >
                     <div className="tabs">

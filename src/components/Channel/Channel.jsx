@@ -10,11 +10,11 @@ import ToggleButton from '../ToggleButton/ToggleButton';
 import { addCommas, removeCommas } from '../../helpers';
 
 const Channel = ({data, channelIndex}) => {
-    const { channels, setChannels } = useContext(channelContext);
+    const { allChannels, setAllChannels } = useContext(channelContext);
     const [channel, setChannel] = useState(data);
 
     useEffect(() => {
-        setChannels((prevChannels) => {
+        setAllChannels((prevChannels) => {
             let newChannels = [...prevChannels];
             newChannels[channelIndex] = channel;
             return newChannels;
