@@ -18,13 +18,13 @@ function App() {
             month,
             budget: 0,
         })),
-        isExpanded: false,
     };
 
     const [allChannels, setAllChannels] = useState([
         {
             id: 1,
             name: 'Paid reviews',
+            isExpanded: true,
             ...defaultChannelData,
         },
     ]);

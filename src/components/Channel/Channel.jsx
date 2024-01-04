@@ -177,6 +177,7 @@ const Channel = ({data, channelIndex}) => {
                         />
 
                         <ToggleButton
+                            id={channel.id}
                             leftLabel="Equal"
                             rightLabel="Manual"
                             value={channel.budgetAllocation}

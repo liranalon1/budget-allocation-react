@@ -3,6 +3,7 @@ import InfoIcon from '../InfoIcon/InfoIcon';
 import { useState } from 'react';
 
 const ToggleButton = ({
+    id,
     leftLabel,
     rightLabel,
     value,
@@ -25,23 +26,23 @@ const ToggleButton = ({
             <div className="toggle-button flex">
                 <input
                     type="radio"
-                    id="switch_left"
+                    id={`switch-left-${id}`}
                     name="switchToggle"
                     value={leftLabel}
                     onChange={toggleState}
                     checked={value === 0}
                 />
-                <label htmlFor="switch_left">{leftLabel}</label>
+                <label htmlFor={`switch-left-${id}`}>{leftLabel}</label>
 
                 <input
                     type="radio"
-                    id="switch_right"
+                    id={`switch-right-${id}`}
                     name="switchToggle"
                     value={rightLabel}
                     onChange={toggleState}
                     checked={value === 1}
                 />
-                <label htmlFor="switch_right">{rightLabel}</label>
+                <label htmlFor={`switch-right-${id}`}>{rightLabel}</label>
             </div>
         </div>
     );
