@@ -1,6 +1,5 @@
 import './ToggleButton.scss';
 import InfoIcon from '../InfoIcon/InfoIcon';
-import { useState } from 'react';
 
 const ToggleButton = ({
     id,
@@ -27,7 +26,7 @@ const ToggleButton = ({
                 <input
                     type="radio"
                     id={`switch-left-${id}`}
-                    name="switchToggle"
+                    name={`switchToggle-${id}`}
                     value={leftLabel}
                     onChange={toggleState}
                     checked={value === 0}
@@ -37,7 +36,7 @@ const ToggleButton = ({
                 <input
                     type="radio"
                     id={`switch-right-${id}`}
-                    name="switchToggle"
+                    name={`switchToggle-${id}`}
                     value={rightLabel}
                     onChange={toggleState}
                     checked={value === 1}
