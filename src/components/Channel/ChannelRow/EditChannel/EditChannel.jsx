@@ -3,7 +3,7 @@ import { useContext, useState } from 'react';
 import { channelContext } from '../../../../App';
 
 const EditChannel = ({ setIsEditMode, channelIndex }) => {
-    const { channels, setChannels } = useContext(channelContext);
+    const { allChannels, setAllChannels } = useContext(channelContext);
 
     const [isExpanded, setIsExpanded] = useState(false);
 
@@ -17,10 +17,10 @@ const EditChannel = ({ setIsEditMode, channelIndex }) => {
     };
 
     const removeChannel = () => {
-        const updatedChannelData = [...channels];
+        const updatedChannelData = [...allChannels];
         updatedChannelData.splice(channelIndex, 1);
 
-        setChannels(updatedChannelData);
+        setAllChannels(updatedChannelData);
         setIsExpanded(false);
     };
 
