@@ -1,4 +1,4 @@
-# budget-allocation-app-react
+# Budget Allocation App with React
 
 ```bash
 # install dependencies
