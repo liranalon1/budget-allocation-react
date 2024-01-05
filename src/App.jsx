@@ -1,6 +1,6 @@
 import './App.scss';
 import { createContext, useState } from 'react';
-import { months } from '@/helpers';
+import { monthNames } from '@/helpers';
 import BudgetCalculator from '@/components/BudgetCalculator/BudgetCalculator';
 import BudgetEdit from '@/components/BudgetEdit/BudgetEdit';
 
@@ -14,7 +14,7 @@ function App() {
         baselineBudget: 0,
         budgetFrequency: 'Annually',
         budgetAllocation: 0,
-        budgetPerMonths: months.map((month) => ({
+        budgetPerMonths: monthNames.map((month) => ({
             month,
             budget: 0,
         })),

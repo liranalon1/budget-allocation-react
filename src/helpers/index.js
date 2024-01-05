@@ -1,17 +1,11 @@
-const months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-];
+import dayjs from 'dayjs';
+
+const currentDate = new Date();
+const currentYear = currentDate.getFullYear();
+
+const monthNames = Array.from({ length: 12 }, (_, index) =>
+    dayjs().month(index).format('MMM')
+);
 
 function checkIfArray(arr) {
     const result = Array.isArray(arr);
@@ -27,4 +21,4 @@ function removeCommas(num) {
     return Number(num?.toString().replace(/,/g, ''));
 }
 
-export { checkIfArray, addCommas, removeCommas, months };
+export { checkIfArray, addCommas, removeCommas, monthNames, currentYear };

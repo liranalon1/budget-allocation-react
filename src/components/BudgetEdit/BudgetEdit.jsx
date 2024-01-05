@@ -1,11 +1,13 @@
 import './BudgetEdit.scss';
 import { useContext, useState } from 'react';
 import { channelContext } from '../../App';
-import { months } from '../../helpers';
-import ChannelMonthRow from '../Channel/ChannelMonthRow/ChannelMonthRow';
+import { monthNames, currentYear } from '@/helpers';
+import ChannelMonthRow from '@/components/Channel/ChannelMonthRow/ChannelMonthRow';
+import dayjs from 'dayjs';
 
 const BudgetEdit = () => {
     const { allChannels, setAllChannels } = useContext(channelContext);
+    
 
     return (
         <div className="budget-edit">
@@ -46,12 +48,12 @@ const BudgetEdit = () => {
             <div className="top flex">
                 <div className="left-side flex">Channel</div>
                 <div className="right-side flex">
-                    {months.map((month, index) => (
-                        <div
-                            className="months-list"
-                            key={index}
-                        >{`${month} 21`}</div>
-                    ))}
+                    {monthNames.map((month, index) => {
+                        const formattedDate = dayjs(`${currentYear}-${index + 1}-01`).format('MMM YY');
+                        return (
+                            <div key={index} className="months-list">{formattedDate.toUpperCase()}</div>
+                        )
+                    })}
                 </div>
             </div>
 

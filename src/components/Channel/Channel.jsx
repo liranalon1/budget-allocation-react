@@ -1,13 +1,14 @@
 import './Channel.scss'
 import { useContext, useState, useEffect } from 'react';
 import { channelContext } from '../../App';
-import ChannelRow from './ChannelRow/ChannelRow';
-import ChannelContent from './ChannelContent/ChannelContent';
-import DropdownSelect from '../DropdownSelect/DropdownSelect';
-import DropdownSelectOption from '../DropdownSelect/DropdownSelectOption';
-import InputGroup from '../InputGroup/InputGroup';
-import ToggleButton from '../ToggleButton/ToggleButton';
-import { addCommas, removeCommas } from '../../helpers';
+import ChannelRow from '@/components/Channel/ChannelRow/ChannelRow';
+import ChannelContent from '@/components/Channel/ChannelContent/ChannelContent';
+import DropdownSelect from '@/components/DropdownSelect/DropdownSelect';
+import DropdownSelectOption from '@/components/DropdownSelect/DropdownSelectOption';
+import InputGroup from '@/components/InputGroup/InputGroup';
+import ToggleButton from '@/components/ToggleButton/ToggleButton';
+import { addCommas, removeCommas, currentYear } from '@/helpers';
+import dayjs from 'dayjs';
 
 const Channel = ({data, channelIndex}) => {
     const { allChannels, setAllChannels } = useContext(channelContext);
@@ -20,7 +21,7 @@ const Channel = ({data, channelIndex}) => {
             return newChannels;
         });
     }, [channel]);
-
+    
     const formatNumber = (number) => number % 1 !== 0 ? number?.toFixed(2) : number?.toString();
 
     const divideAndFormat = (number, divisor) => {
@@ -202,6 +203,9 @@ const Channel = ({data, channelIndex}) => {
                             <div className="inputs-wrap">
                                 {channel.budgetPerMonths.map(
                                     ({ month, budget }, j) => {
+
+                                        const formattedDate = dayjs(`${currentYear}-${j + 1}-01`).format('MMM YY');
+
                                         return (
                                             <div key={j}>
                                                 <InputGroup
@@ -220,7 +224,7 @@ const Channel = ({data, channelIndex}) => {
                                                             monthIndex: j,
                                                         })
                                                     }}
-                                                    label={`${month} 21`}
+                                                    label={formattedDate}
                                                     isDisabled={
                                                         channel.budgetAllocation === 0
                                                     }
