@@ -62,7 +62,10 @@ const Channel = ({data, channelIndex}) => {
         });
     }
 
-    const handleBaselineBudget = (value) => {
+    const handleBaselineBudget = (e) => {
+        let value = e.target.value;
+        value = value.replace(/[^0-9,]/g, '');
+
         setBaselineBudget(removeCommas(value));
 
         if(channel.budgetAllocation === 0){
@@ -168,7 +171,7 @@ const Channel = ({data, channelIndex}) => {
                                 : addCommas(formatNumber(channel.budgetPerMonths.reduce((acc, curr) => acc + curr.budget,0)))
                             }
                             placeholder=""
-                            handleChange={(e) => handleBaselineBudget(e.target.value)}
+                            handleChange={handleBaselineBudget}
                             label={`Baseline ${channel.budgetFrequency} Budget`}
                             info=""
                             isDisabled={
@@ -213,7 +216,7 @@ const Channel = ({data, channelIndex}) => {
                                                     placeholder=""
                                                     handleChange={(e) => {
                                                         setBudgetPerMonth({
-                                                            value: e.target.value,
+                                                            value: e.target.value.replace(/[^0-9,]/g, ''),
                                                             monthIndex: j,
                                                         })
                                                     }}

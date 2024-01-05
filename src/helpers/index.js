@@ -22,6 +22,7 @@ function checkIfArray(arr) {
 function addCommas(num) {
     return num?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
+
 function removeCommas(num) {
     return Number(num?.toString().replace(/,/g, ''));
 }
