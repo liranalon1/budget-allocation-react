@@ -7,7 +7,7 @@ import DropdownSelect from '@/components/DropdownSelect/DropdownSelect';
 import DropdownSelectOption from '@/components/DropdownSelect/DropdownSelectOption';
 import InputGroup from '@/components/InputGroup/InputGroup';
 import ToggleButton from '@/components/ToggleButton/ToggleButton';
-import { addCommas, removeCommas, currentYear } from '@/helpers';
+import { addCommas, removeCommas, currentYear, monthNames } from '@/helpers';
 import dayjs from 'dayjs';
 
 const Channel = ({data, channelIndex}) => {
@@ -29,15 +29,15 @@ const Channel = ({data, channelIndex}) => {
         return result % 1 === 0 ? result : result.toFixed(2);   // Check if there is a decimal part
     };
 
-    const calculateBudget = (value) => {
-        const selectedOption = channel.budgetFrequency;
+    const calculateBudget = ({baselineBudget, budgetFrequency}) => {
+        const selectedOption = budgetFrequency;
         switch (selectedOption) {
             case 'Annually':
-                return divideAndFormat(value, 12);
+                return divideAndFormat(baselineBudget, 12);
             case 'Monthly':
-                return value;
+                return baselineBudget;
             case 'Quarterly':
-                return divideAndFormat(value, 3);
+                return divideAndFormat(baselineBudget, 3);
             default:
                 return 0;
         }
@@ -53,12 +53,16 @@ const Channel = ({data, channelIndex}) => {
             };
         });
         
-        let newChannel = {};
         setChannel((prevChannel) => {
-            newChannel = {
+            let newChannel = {
                 ...prevChannel,
                 budgetPerMonths: newBudgetPerMonths,
             };
+
+            if(channel.budgetAllocation === 1) {
+                newChannel.baselineBudget = newChannel.budgetPerMonths.reduce((acc, curr) => acc + curr.budget,0)
+            }
+            
             return newChannel;
         });
     }
@@ -71,7 +75,10 @@ const Channel = ({data, channelIndex}) => {
 
         if(channel.budgetAllocation === 0){
             setBudgetPerMonth({
-                value: calculateBudget(removeCommas(value)),
+                value: calculateBudget({
+                    baselineBudget: removeCommas(value),
+                    budgetFrequency: channel.budgetFrequency,
+                }),
                 monthIndex: null,
             })
         }        
@@ -90,22 +97,38 @@ const Channel = ({data, channelIndex}) => {
 
     const setBudgetFrequency = (value) => {
         setChannel((prevChannel) => {
-            let newChannel = {};
-            newChannel = {
+            let newChannel = {
                 ...prevChannel,
-                budgetFrequency: value
+                budgetFrequency: value,
             };
+    
+            newChannel.budgetPerMonths = newChannel.budgetPerMonths.map(({ budget }, index) => ({
+                month: monthNames[index],
+                budget: calculateBudget({
+                    baselineBudget: channel.baselineBudget,
+                    budgetFrequency: value,
+                }),
+            }));
+    
             return newChannel;
         });
-    }
+    };    
 
     const setBudgetAllocation = (value) => {
         setChannel((prevChannel) => {
-            let newChannel = {};
-            newChannel = {
+            let newChannel = {
                 ...prevChannel,
                 budgetAllocation: value
             };
+
+            newChannel.budgetPerMonths = newChannel.budgetPerMonths.map(({ budget }, index) => ({
+                month: monthNames[index],
+                budget: calculateBudget({
+                    baselineBudget: channel.baselineBudget,
+                    budgetFrequency: channel.budgetFrequency,
+                }),
+            }));
+
             return newChannel;
         });
     }
@@ -166,11 +189,7 @@ const Channel = ({data, channelIndex}) => {
                         </DropdownSelect>
 
                         <InputGroup
-                            value={
-                                channel.budgetAllocation === 0
-                                ? addCommas(formatNumber(channel.baselineBudget))
-                                : addCommas(formatNumber(channel.budgetPerMonths.reduce((acc, curr) => acc + curr.budget,0)))
-                            }
+                            value={addCommas(formatNumber(channel.baselineBudget))}
                             placeholder=""
                             handleChange={handleBaselineBudget}
                             label={`Baseline ${channel.budgetFrequency} Budget`}
@@ -212,11 +231,7 @@ const Channel = ({data, channelIndex}) => {
                                                     currency={
                                                         channel.currency
                                                     }
-                                                    value={
-                                                        channel.budgetAllocation === 0
-                                                        ? addCommas(calculateBudget(channel.baselineBudget))
-                                                        : addCommas(budget)
-                                                    }
+                                                    value={addCommas(budget)}
                                                     placeholder=""
                                                     handleChange={(e) => {
                                                         setBudgetPerMonth({
